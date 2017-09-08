@@ -1,5 +1,7 @@
 #include<iostream>
 #include<stdlib.h>
+#include<iomanip>
+
 #include "Donor.h"
 
 using namespace std;
@@ -30,51 +32,60 @@ int Donor::view(){
 
 int Donor::donate(int addNum){
     this->amountDonated += addNum;
-    cout<< "added" << addNum <<endl;
+    cout<< "added $" << addNum <<endl;
     return 0;
 
 }
 
 /**
  * print out balance
- * TODO: print out $1020.33
  *
  */
 int Donor::total(){
-    cout<< "$" << this->amountDonated <<endl;
+    cout<< "$" ;
+    cout<<setiosflags(ios::fixed)<<setprecision(2)<<this->amountDonated<<endl;
     return 0;
 
 }
 
 int Donor::add(){
     string tmpStr;
+
     cout<<"please input your Last name: ";
-    cin>> tmpStr;
-    if(tmpStr != "x")
+    getline(cin, tmpStr);
+    if(tmpStr.length() >= 20 || tmpStr.length() <= 1)
+        cout<<"length of name should be more than 1 character and less than 20 character"<<endl;
+    else if(any_of(tmpStr.begin(), tmpStr.end(), ::isdigit))
+        cout<< "name should not contain digit"<<endl;
+    else if(tmpStr == "")
+        cout<< "Last name remains"<<endl;
+    else
         this->donorLastName = tmpStr;
+
+
     cout<<"please input your Firstname: ";
-    cin>> tmpStr;
-    if(tmpStr != "x")
+    getline(cin, tmpStr);
+    if(tmpStr != "")
         this->donorFirstName = tmpStr;
     cout<<"please input your age(sorry, prefer birthday, design document require): ";
-    cin>> tmpStr;
-    if(tmpStr != "x")
+    getline(cin, tmpStr);
+    if(tmpStr != "")
         this->age = stoi(tmpStr);
     cout<<"please input your street number: ";
-    cin>> tmpStr;
-    if(tmpStr != "x")
+    getline(cin, tmpStr);
+    if(tmpStr != "")
         this->streetNumber = stoi(tmpStr);
     cout<<"please input your street name: ";
-    cin>> tmpStr;
-    if(tmpStr != "x")
+    getline(cin, tmpStr);
+    if(tmpStr != "")
         this->streetName = tmpStr;
     cout<< "please input your twon: ";
-    cin>> tmpStr;
-    if(tmpStr != "x")
+    getline(cin, tmpStr);
+    if(tmpStr != "")
         this->town= tmpStr;
     cout<< "please input your zip code: ";
-    cin>> tmpStr;
-    if(tmpStr != "x")
+    getline(cin, tmpStr);
+    if(tmpStr != "")
         this->zipCode= tmpStr;
     cout<<"your amount donated will be $0 initially"<<endl;
     this->amountDonated = 0;
@@ -86,7 +97,7 @@ int Donor::add(){
 int Donor::manage(){
     cout<<endl<<"your infor list below: "<<endl;
     this->view();
-    cout<<"now, change your infor, use x+return to remain same. "<< endl;
+    cout<<"now, change your infor, use return to remain same. "<< endl;
     this->add();
     return 0;
 }
