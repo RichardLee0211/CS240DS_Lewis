@@ -13,7 +13,7 @@ int main(){
     while(1){
         cout<<endl<<"1.add 2.manage 3.view 4.donate 5.total 6.quit"<<endl;
         cout<<"please input command:";
-        cin>>cmd;
+	getline(cin, cmd);
         if(cmd == "add")
             myDonor->add();
         else if(cmd == "manage")
