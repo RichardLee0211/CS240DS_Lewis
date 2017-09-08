@@ -33,3 +33,6 @@
 
 # gdb problem in mac
 .gdbinit
+
+# tar file
+*.tar.gz
