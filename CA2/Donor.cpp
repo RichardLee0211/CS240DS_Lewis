@@ -64,6 +64,10 @@ int Donor::total(){
 int Donor::add(){
     string tmpStr;
 
+    /**
+     * donorLastName
+     * contains only letters
+     */
     while(1){
 	    cout<<endl<<"original is:"<<this->donorLastName<<endl;
 	    cout<<"please input your Last name: ";
@@ -88,6 +92,10 @@ int Donor::add(){
 
     }
 
+    /**
+     * donorFirstName
+     * contains only letters
+     */
     while(1){
 	    cout<<endl<<"original is:"<<this->donorFirstName<<endl;
 	    cout<<"please input your Firstname: ";
@@ -112,6 +120,25 @@ int Donor::add(){
 
     }
 
+    /**
+     * userID
+     * contains at least 5 characters but no more than 10,
+     * containing only letters and digits
+     */
+    //somecode TODO
+
+    /**
+     * password
+     * contains at least 6 characters,
+     * including at least one digit
+     * and one character that is neither a letter nor a digit
+     */
+    //somecode TODO
+
+    /**
+     * age
+     * must be at least 18
+     */
     while(1){
 	    cout<<endl<<"original is:"<<this->age<<endl;
 	    cout<<"please input your age(sorry, prefer birthday, design document require): ";
@@ -135,6 +162,10 @@ int Donor::add(){
 
     }
 
+    /**
+     * streetNumber
+     * must be positive
+     */
     while(1){
 	    cout<<endl<<"original is:"<<this->streetNumber<<endl;
 	    cout<<"please input your street number: ";
@@ -158,6 +189,10 @@ int Donor::add(){
 
     }
 
+    /**
+     * streetName
+     * may include multiple words separated by spaces or tabs
+     */
     while(1){
 	    cout<<endl<<"original is:"<<this->streetName<<endl;
 	    cout<<"please input your street name: ";
@@ -182,6 +217,11 @@ int Donor::add(){
 
     }
 
+
+    /**
+     * town
+     *  may also include multiple words separated by spaces or tabs
+     */
     while(1){
 	    cout<<endl<<"original is:"<<this->town<<endl;
 	    cout<< "please input your town: ";
@@ -206,6 +246,17 @@ int Donor::add(){
 
     }
 
+    /**
+     * state
+     * C++ enum of 2-character state codes for NY, PA,
+     * and the New England states only RI, NH, VT,MA, CT, ME
+     */
+    //somecode TODO ??does this need filter??
+
+    /**
+     * zipCode
+     * contains exactly 5 digits
+     */
     while(1){
 	    cout<<endl<<"original is:"<<this->zipCode<<endl;
 	    cout<< "please input your zip code: ";
@@ -229,6 +280,11 @@ int Donor::add(){
 
     }
 
+    /**
+     * amountDonated
+     * float, non-negative, total amount donated must not grow beyond $5,000
+     */
+    //TODO not here, but to exam it
     cout<<"your amount donated will be $0 initially"<<endl;
     this->amountDonated = 0;
 

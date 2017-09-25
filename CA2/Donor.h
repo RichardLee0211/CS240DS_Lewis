@@ -1,16 +1,24 @@
+#ifndef DONOR_H
+#define DONOR_H
+
 #include<iostream>
 #include<stdlib.h>
 
 using namespace std;
 
+enum State{NY=0, PA, RI, NH, VT, MA, CT, ME};
+
 class Donor{
     private:
         string donorLastName;
         string donorFirstName;
+        string userID;
+        string password;
         int age;
         int streetNumber;
         string streetName;
         string town;
+        State state;
         string zipCode;
         float amountDonated;
     public:
@@ -26,3 +34,4 @@ class Donor{
 
 
 };
+#endif

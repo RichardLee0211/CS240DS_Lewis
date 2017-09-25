@@ -1,6 +1,6 @@
 # project name and intro
-TARGET = Main.out
-OBJS =  main.o Donor.o #Exchange.o
+TARGET = Donate
+OBJS =  main.o Donor.o DonorDatabase.o
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
@@ -21,8 +21,8 @@ main.o: main.cpp
 Donor.o: Donor.cpp Donor.h
 	$(CC) $(CFLAGS) Donor.cpp
 
-Exchange.o: Exchange.cpp Exchange.h
-	$(CC) $(CFLAGS) Exchange.cpp
+DonorDatabase.o: DonorDatabase.cpp DonorDatabase.h
+	$(CC) $(CFLAGS) DonorDatabase.cpp
 
 # Specify the object files and executables that are generated
 # and need to be removed to re-compile the whole thing
