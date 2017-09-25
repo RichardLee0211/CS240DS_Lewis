@@ -57,6 +57,12 @@ void SplitString(const std::string& s, std::vector<std::string>& v, const std::s
         v.push_back(s.substr(pos1));
 }
 
+enum State strtoState(string str){
+    if(str == "") return 0;
+    if(str == "NY") return enum State;
+
+}
+
 int DonorDatabase::load(string filedir){
     ifstream ifs(filedir, ifs.binary | ifs.in );
     if(!ifs.is_open())
@@ -64,14 +70,23 @@ int DonorDatabase::load(string filedir){
 
     string line;
     string delim = " ";
-    std::vector<std::string> attri;
+    vector<string> attri;
 
     while(!ifs.eof()){
         getline(ifs, line);
         cout<<line<<endl;
         SplitString(line, attri, delim);
-        string firstname = attri[0];
-        cout<<"firstname"<<firstname<<endl;
+        string donorFirstname = attri[0];
+        string donorLastName= attri[1];
+        string userID = attri[2];
+        string password = attri[3];
+        int age = stoi(attri[4]);
+        int streetNumber = stoi(attri[5]);
+        string streetName = attri[6];
+        string town = attri[7];
+        //enum State state = attri[8]; //TODO:convert
+        string zipCode = attri[9];
+        float amountDonated = atof(attri[10].c_str());
         //this->donors[0].setDonor
         attri.clear();
 

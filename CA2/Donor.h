@@ -18,7 +18,7 @@ class Donor{
         int streetNumber;
         string streetName;
         string town;
-        State state;
+        enum State state;
         string zipCode;
         float amountDonated;
     public:
