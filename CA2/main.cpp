@@ -5,6 +5,7 @@
 
 #include"Donor.h"
 #include"DonorDatabase.h"
+#include"util.h"
 
 using namespace std;
 
@@ -42,13 +43,13 @@ int DonorMain(){
 
 int main(int argc, char* argv[]){
     int donorsMax = 1;
-
     if(argc==1 || argc > 3) {
         printf("wrong arguments number\n");
         return 1;
     }
+
     donorsMax = atoi(argv[1]);
-    if(donorsMax<1 || donorsMax>1000){
+    if(donorsMax<1 || donorsMax>DONORS_MAX){
         printf("wrong donors number\n");
         return 1;
     }

@@ -23,6 +23,7 @@ class Donor{
         float amountDonated;
     public:
         Donor();
+        int setfromLine(string line);
         int add(); // to add all new information
         int manage(); // to change some or all donor infor
         int view();
@@ -30,6 +31,9 @@ class Donor{
         int donate();
         int total();
         int quit();
+
+    public:
+        float getAmountDonated();
 
 
 

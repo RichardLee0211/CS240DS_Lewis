@@ -3,19 +3,26 @@
 #include<iostream>
 #include<cstring>
 #include<vector>
+#include<iomanip>
 
-#include"Donor.h"
 #include"DonorDatabase.h"
+#include"Donor.h"
+#include"util.h"
 
 using namespace std;
 
-
 DonorDatabase::DonorDatabase(){
-    this->donors = new Donor[1000];
+    //donors[0], donor[1] will construct automatically,
+    //using default constructor
+    this->donors = new Donor[DONORS_MAX];
+    this->donorsNum = 0;
+    this->moneyTotal = 0;
 };
 
 DonorDatabase::DonorDatabase(int donorsMax){
     this->donors = new Donor[donorsMax];
+    this->donorsNum = 0;
+    this->moneyTotal = 0;
 };
 
 int DonorDatabase::login(){
@@ -38,71 +45,55 @@ int DonorDatabase::load(){
     printf("please input database file: ");
     getline(cin, filedir);
     this->load(filedir);
-    //TODO
     return 0;
 };
 
-void SplitString(const std::string& s, std::vector<std::string>& v, const std::string& c){
-    std::string::size_type pos1, pos2;
-    pos2 = s.find(c);
-    pos1 = 0;
-    while(std::string::npos != pos2)
-    {
-        v.push_back(s.substr(pos1, pos2-pos1));
-
-        pos1 = pos2 + c.size();
-        pos2 = s.find(c, pos1);
-    }
-    if(pos1 != s.length())
-        v.push_back(s.substr(pos1));
-}
-
-enum State strtoState(string str){
-    if(str == "") return 0;
-    if(str == "NY") return enum State;
-
-}
-
+/**
+ * TODO: going throgh a very hard time,
+ * could find many faults. U could do it better
+ */
 int DonorDatabase::load(string filedir){
     ifstream ifs(filedir, ifs.binary | ifs.in );
     if(!ifs.is_open())
         cout<<"failed to open file"<<endl;
 
-    string line;
-    string delim = " ";
-    vector<string> attri;
-
+    int i = 0;
     while(!ifs.eof()){
+        string line;
         getline(ifs, line);
+        if(line == "") break;
         cout<<line<<endl;
-        SplitString(line, attri, delim);
-        string donorFirstname = attri[0];
-        string donorLastName= attri[1];
-        string userID = attri[2];
-        string password = attri[3];
-        int age = stoi(attri[4]);
-        int streetNumber = stoi(attri[5]);
-        string streetName = attri[6];
-        string town = attri[7];
-        //enum State state = attri[8]; //TODO:convert
-        string zipCode = attri[9];
-        float amountDonated = atof(attri[10].c_str());
-        //this->donors[0].setDonor
-        attri.clear();
-
+        this->donors[i].setfromLine(line);
+        i++;
+        //if(i>=donorsMax ||i>=DONORS_MAX) break; //TODO: make donorsMax global
+        if(i>=DONORS_MAX) break;
     }
+    this->donorsNum = i;
+    this->freshMoneyTotal();
+    ifs.close();
 
-
-    //TODO
     return 0;
 };
 
 int DonorDatabase::report(){
-    //TODO
+    this->freshMoneyTotal();
+    cout<<"we have "<<this->donorsNum<<" in out company."<<endl;
+    cout<< "we got about $" ;
+    cout<<setiosflags(ios::fixed)<<setprecision(2)<<this->moneyTotal<<endl;
     return 0;
 };
 
 int DonorDatabase::quit(){
     //TODO
+    return 0;
+};
+
+int DonorDatabase::freshMoneyTotal(){
+    float tmpMoneyTotal = 0.0;
+    for(int i=0; i<this->donorsNum; i++){
+        tmpMoneyTotal += this->donors[i].getAmountDonated();
+    }
+    this->moneyTotal = tmpMoneyTotal;
+
     return 0;
 };

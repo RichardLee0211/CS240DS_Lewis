@@ -2,21 +2,45 @@
 #include<stdlib.h>
 #include<iomanip>
 #include<algorithm>
+#include<vector>
 
 #include "Donor.h"
+#include"util.h"
 
 using namespace std;
 
 Donor::Donor(){
-    donorLastName = "defaultLastname";
-    donorFirstName = "defaultFirstname";
-    age = 18;
-    streetNumber = 0;
-    streetName = "defaultStreetname";
-    town = "defaultTown";
-    zipCode = "10000";
-    amountDonated = 0.00;
+    this->donorLastName = "defaultLastname";
+    this->donorFirstName = "defaultFirstname";
+    this->userID = "richard";
+    this->password = "abcd";
+    this->age = 18;
+    this->streetNumber = 0;
+    this->streetName = "defaultStreetname";
+    this->town = "defaultTown";
+    this->state = NY;
+    this->zipCode = "10000";
+    this->amountDonated = 0.00;
 
+}
+
+int Donor::setfromLine(string line){
+    string delim = " ";
+    vector<string> attri;
+    SplitString(line, attri, delim);
+    this->donorFirstName = attri[0];
+    this->donorLastName= attri[1];
+    this->userID = attri[2];
+    this->password = attri[3];
+    this->age = stoi(attri[4]);
+    this->streetNumber = stoi(attri[5]);
+    this->streetName = attri[6];
+    this->town = attri[7];
+    this->state = strtoState(attri[8]);
+    this->zipCode = attri[9];
+    this->amountDonated = atof(attri[10].c_str());
+    attri.clear();
+    return 0;
 }
 
 int Donor::view(){
@@ -30,6 +54,7 @@ int Donor::view(){
     return 0;
 
 }
+
 int Donor::donate(){
     cout<< "please input $: ";
     int num;
@@ -52,7 +77,6 @@ int Donor::donate(int addNum){
 
 /**
  * print out balance
- *
  */
 int Donor::total(){
     cout<< "$" ;
@@ -299,4 +323,8 @@ int Donor::manage(){
     cout<<"now, change your infor, use return to remain same. "<< endl;
     this->add();
     return 0;
+}
+
+float Donor::getAmountDonated(){
+    return this->amountDonated;
 }

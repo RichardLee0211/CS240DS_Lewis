@@ -13,7 +13,14 @@ using namespace std;
 
 class DonorDatabase{
 private:
-    Donor *donors;
+    //TODO: figure out how to use this
+    //donors is a pointer pointing to array
+    //*donors, namely donors[0] is a pointer pointing to Donor
+    //Donor* donors[];
+
+    Donor* donors;
+    int donorsNum;
+    float moneyTotal;
 
 public:
     DonorDatabase();
@@ -25,6 +32,7 @@ public:
     int load(string filedir);
     int report();
     int quit();
+    int freshMoneyTotal();
 
 
 };

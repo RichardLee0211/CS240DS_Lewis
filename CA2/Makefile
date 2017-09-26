@@ -1,6 +1,6 @@
 # project name and intro
 TARGET = Donate
-OBJS =  main.o Donor.o DonorDatabase.o
+OBJS =  main.o Donor.o DonorDatabase.o util.o
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
@@ -15,14 +15,17 @@ $(TARGET): $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
 
 # Specify how the object files should be created from source files
-main.o: main.cpp
+main.o: main.cpp util.h
 	$(CC) $(CFLAGS) main.cpp
 
-Donor.o: Donor.cpp Donor.h
+Donor.o: Donor.cpp Donor.h util.h
 	$(CC) $(CFLAGS) Donor.cpp
 
-DonorDatabase.o: DonorDatabase.cpp DonorDatabase.h
+DonorDatabase.o: DonorDatabase.cpp DonorDatabase.h util.h
 	$(CC) $(CFLAGS) DonorDatabase.cpp
+
+util.o: util.cpp util.h
+	$(CC) $(CFLAGS) util.cpp
 
 # Specify the object files and executables that are generated
 # and need to be removed to re-compile the whole thing
