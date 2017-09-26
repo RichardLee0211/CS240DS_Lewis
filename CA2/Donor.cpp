@@ -52,15 +52,50 @@ int Donor::view(){
     cout<< "zip code: " << this->zipCode <<endl;
     cout<< "amount Donated: " << this->amountDonated <<endl;
     return 0;
-
 }
+
+int Donor::passwd(){
+    string tmpPasswd;
+    string newPasswd;
+    string newPasswd2;
+    cout<<"please input your original passwd: ";
+    cin>>tmpPasswd;
+    if(tmpPasswd != this->password){
+        cout<<"wrong password!!"<<endl;
+        return 1;
+    }
+    cout<<"welcome, please input your new password: ";
+    cin>>newPasswd;
+    cout<<"please input new password again: ";
+    cin>>newPasswd2;
+    if(newPasswd != newPasswd2){
+        cout<<"2 new passwd didn't match!!"<<endl;
+        cout<<"fail to change passwd"<<endl;
+        return 1;
+    }else{
+        this->password = newPasswd;
+        cout<<"your passwd has been changed"<<endl;
+        return 0;
+
+    }
+
+};
 
 int Donor::donate(){
     cout<< "please input $: ";
-    int num;
+    float num;
     string tmpStr;
     getline(cin, tmpStr);
-    num = stoi(tmpStr);
+    if(tmpStr == ""){
+        cout<<"quit donate"<<endl;
+        return -1;
+    }
+    //TODO: should exam the input
+    num = stol(tmpStr.c_str());
+    if(num<=0 || num>5000){
+        cout<<"should input positive number or no more than 5000$"<<endl;
+        return 0;
+    }
     this->donate(num);
     cout<<endl<<"donate succeeded! "<<endl;
     this->view();
@@ -68,7 +103,13 @@ int Donor::donate(){
 
 }
 
-int Donor::donate(int addNum){
+int Donor::donate(float addNum){
+    if(this->amountDonated + addNum > 5000){
+        cout<<"sorry, your current donate amount is "<<endl;
+        this->total();
+        cout<<"you can't donate more than 5000 "<<endl;
+        return 1;
+    }
     this->amountDonated += addNum;
     cout<< "added $" << addNum <<endl;
     return 0;
@@ -79,6 +120,7 @@ int Donor::donate(int addNum){
  * print out balance
  */
 int Donor::total(){
+    cout<<this->donorLastName<<' ';
     cout<< "$" ;
     cout<<setiosflags(ios::fixed)<<setprecision(2)<<this->amountDonated<<endl;
     return 0;
@@ -124,17 +166,17 @@ int Donor::add(){
 	    cout<<endl<<"original is:"<<this->donorFirstName<<endl;
 	    cout<<"please input your Firstname: ";
 	    getline(cin, tmpStr);
-	    if(tmpStr.length() >= 20 || tmpStr.length() <= 1){
+	    if(tmpStr == ""){
+		    cout<< "Last name remains"<<endl;
+		    break;
+	    }
+        else if(tmpStr.length() >= 20 || tmpStr.length() <= 1){
 		    cout<<"length of name should be more than 1 character and less than 20 character"<<endl;
 		    continue;
 	    }
 	    else if(any_of(tmpStr.begin(), tmpStr.end(), ::isdigit)){
 		    cout<< "name should not contain digit"<<endl;
 		    continue;
-	    }
-	    else if(tmpStr == ""){
-		    cout<< "Last name remains"<<endl;
-		    break;
 	    }
 	    else{
 		    this->donorFirstName = tmpStr;
@@ -149,7 +191,28 @@ int Donor::add(){
      * contains at least 5 characters but no more than 10,
      * containing only letters and digits
      */
-    //somecode TODO
+    while(1){
+	    cout<<endl<<"original is:"<<this->userID<<endl;
+	    cout<<"please input your userID: ";
+	    getline(cin, tmpStr);
+	    if(tmpStr == ""){
+		    cout<< "userID remains"<<endl;
+		    break;
+	    }
+        else if(tmpStr.length() >= 10 || tmpStr.length() <= 5){
+		    cout<<"length of userID should be more than 1 character and less than 20 character"<<endl;
+		    continue;
+	    }else if(isHaveSpecialChar(tmpStr.c_str())){
+		    cout<< "userID should not contain special char"<<endl;
+		    continue;
+	    }
+	    else{
+		    this->userID = tmpStr;
+		    break;
+
+	    }
+
+    }
 
     /**
      * password
@@ -157,7 +220,29 @@ int Donor::add(){
      * including at least one digit
      * and one character that is neither a letter nor a digit
      */
-    //somecode TODO
+    int chances  = 3;
+    while(1){
+        string newPasswd;
+        string newPasswd2;
+        cout<<"welcome, please input your new password: ";
+        cin>>newPasswd;
+        cout<<"please input new password again: ";
+        cin>>newPasswd2;
+        if(newPasswd != newPasswd2){
+            cout<<"2 new passwd didn't match!!"<<endl;
+            cout<<"fail to set passwd, you have "<<chances<<" chances"<<endl;
+            chances--;
+        }else{
+            this->password = newPasswd;
+            cout<<"your passwd has been changed"<<endl;
+            break;
+        }
+        if(chances == 0){
+            cout<<"fail to set passwd, this coincidant will report."<<endl;
+            break;
+        }
+
+    }
 
     /**
      * age
@@ -250,17 +335,16 @@ int Donor::add(){
 	    cout<<endl<<"original is:"<<this->town<<endl;
 	    cout<< "please input your town: ";
 	    getline(cin, tmpStr);
-	    if(tmpStr.length() >= 80 || tmpStr.length() <= 1){
+	    if(tmpStr == ""){
+		    cout<< "town name remains"<<endl;
+		    break;
+	    }else if(tmpStr.length() >= 80 || tmpStr.length() <= 1){
 		    cout<<"length of name should be more than 1 character and less than 80 character"<<endl;
 		    continue;
 	    }
 	    else if(any_of(tmpStr.begin(), tmpStr.end(), ::isdigit)){
 		    cout<< "name should not contain digit"<<endl;
 		    continue;
-	    }
-	    else if(tmpStr == ""){
-		    cout<< "town name remains"<<endl;
-		    break;
 	    }
 	    else{
 		    this->town= tmpStr;
@@ -275,7 +359,28 @@ int Donor::add(){
      * C++ enum of 2-character state codes for NY, PA,
      * and the New England states only RI, NH, VT,MA, CT, ME
      */
-    //somecode TODO ??does this need filter??
+    while(1){
+        cout<<endl<<"origional state is: "<<this->state<<endl;
+        cout<<"please input 1.NY, 2.PA, 3.RI, 4.NH, 5.VT, 6.MA, 7.CT, 8.ME"<<endl;
+	    getline(cin, tmpStr);
+	    if(tmpStr == ""){
+		    cout<< "state name remains"<<endl;
+		    break;
+	    }else if(tmpStr.length() != 2){
+		    cout<<"length of state should be exactly 2"<<endl;
+		    continue;
+	    }
+	    else if(any_of(tmpStr.begin(), tmpStr.end(), ::isdigit)){
+		    cout<< "state should not contain digit"<<endl;
+		    continue;
+	    }
+	    else{
+		    this->state = strtoState(tmpStr);
+		    break;
+
+	    }
+
+    }
 
     /**
      * zipCode
@@ -308,7 +413,6 @@ int Donor::add(){
      * amountDonated
      * float, non-negative, total amount donated must not grow beyond $5,000
      */
-    //TODO not here, but to exam it
     cout<<"your amount donated will be $0 initially"<<endl;
     this->amountDonated = 0;
 
@@ -328,3 +432,57 @@ int Donor::manage(){
 float Donor::getAmountDonated(){
     return this->amountDonated;
 }
+
+//TODO: handle wrong cmd for no reason
+int Donor::donorMain(){
+    string cmd;
+    while(1){
+        cout<<endl;
+        cout<<"this is donorMain"<<endl;
+        cout<<"1.Add 2.Manage 3.View 4.Donate 5.Total 6.Logout"<<endl;
+        cout<<"please input command:";
+        getline(cin, cmd);
+        if(cmd == "Add")
+           this->add();
+        else if(cmd == "Manage")
+            this->manage();
+        else if(cmd == "View")
+            this->view();
+        else if(cmd == "Donate")
+            this->donate();
+        else if(cmd == "Total")
+            this->total();
+        else if(cmd == "Quit"){
+            cout<< "good bye"<<endl;
+            break;
+        }else if(cmd == "Logout"){
+            this->logout();
+            break;
+        }
+        else{
+            cout<<endl<<"wrong cmd: "<<cmd<<endl;
+        }
+
+    }
+
+    return 0;
+};
+
+int Donor::logout(){
+    cout<< "good bye"<<endl;
+    return 0;
+};
+string Donor::getUserID(){
+    return this->userID;
+
+};
+
+string Donor::getPassword(){
+    return this->password;
+};
+
+string Donor::getAlltoLine(){
+    string line;
+    //TODO
+    return line;
+};

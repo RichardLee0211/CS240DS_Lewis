@@ -26,17 +26,52 @@ DonorDatabase::DonorDatabase(int donorsMax){
 };
 
 int DonorDatabase::login(){
-    //TODO
+    string tmpUserID;
+    string tmpPassword;
+    cout<<"please input your userID: ";
+    cin>>tmpUserID;
+    cout<<"please input your password: ";
+    cin>>tmpPassword;
+    int loginTag = 0;
+    for(int i=0; i<this->donorsNum; i++){
+        if(this->donors[i].getUserID() == tmpUserID &&
+                this->donors[i].getPassword() == tmpPassword){
+            cout<<"welcome, "<<this->donors[i].getUserID()<<endl;
+            this->donors[i].donorMain();
+            loginTag = 1;
+            this->freshMoneyTotal();
+        }
+    }
+    if(loginTag == 0){
+        cout<<"userID or password mismatch"<<endl;
+        return 1;
+    }
     return 0;
 };
 
 int DonorDatabase::add(){
-    //TODO
+    this->donors[this->donorsNum].add();
+    this->donorsNum++;
+    this->freshMoneyTotal();
     return 0;
 };
 
 int DonorDatabase::save(){
-    //TODO
+    string filedir;
+    cout<<"please input file you want to save"<<endl;
+    cin>>filedir;
+    fstream fs(filedir, fs.trunc | fs.binary | fs.in | fs.out);
+    if(!fs.is_open())
+        cout<<"failed to open file"<<endl;
+    for(int i=0; i<this->donorsNum; i++){
+        string line = this->donors[i].getAlltoLine();
+        //fs.writej
+        //std::cout.write(reinterpret_cast<char*>(&n), sizeof n) << '\n';
+        //TODO
+
+    }
+
+
     return 0;
 };
 

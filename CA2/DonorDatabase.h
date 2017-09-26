@@ -25,6 +25,9 @@ private:
 public:
     DonorDatabase();
     DonorDatabase(int donorsMax);
+    int freshMoneyTotal();
+
+public:
     int login(); //call when type Login capital
     int add();
     int save();
@@ -32,7 +35,7 @@ public:
     int load(string filedir);
     int report();
     int quit();
-    int freshMoneyTotal();
+
 
 
 };
