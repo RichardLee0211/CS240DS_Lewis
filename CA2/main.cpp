@@ -24,7 +24,8 @@ int main(int argc, char* argv[]){
     DonorDatabase* database = new DonorDatabase(donorsMax);
 
     if(argc==3){
-        //TODO: read file into DonorData
+        database->load(argv[2]);
+
     }
 
     string cmd;

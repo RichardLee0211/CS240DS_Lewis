@@ -306,17 +306,16 @@ int Donor::add(){
 	    cout<<endl<<"original is:"<<this->streetName<<endl;
 	    cout<<"please input your street name: ";
 	    getline(cin, tmpStr);
-	    if(tmpStr.length() >= 80 || tmpStr.length() <= 1){
+	    if(tmpStr == ""){
+		    cout<< "street name remains"<<endl;
+		    break;
+	    }else if(tmpStr.length() >= 80 || tmpStr.length() <= 1){
 		    cout<<"length of name should be more than 1 character and less than 80 character"<<endl;
 		    continue;
 	    }
 	    else if(any_of(tmpStr.begin(), tmpStr.end(), ::isdigit)){
 		    cout<< "name should not contain digit"<<endl;
 		    continue;
-	    }
-	    else if(tmpStr == ""){
-		    cout<< "street name remains"<<endl;
-		    break;
 	    }
 	    else{
 		    this->streetName = tmpStr;
@@ -472,6 +471,7 @@ int Donor::logout(){
     cout<< "good bye"<<endl;
     return 0;
 };
+
 string Donor::getUserID(){
     return this->userID;
 
@@ -483,6 +483,26 @@ string Donor::getPassword(){
 
 string Donor::getAlltoLine(){
     string line;
-    //TODO
+    line.append(this->donorFirstName);
+    line.append(" ");
+    line.append(this->donorLastName);
+    line.append(" ");
+    line.append(this->userID);
+    line.append(" ");
+    line.append(this->password);
+    line.append(" ");
+    line.append(to_string(this->age));
+    line.append(" ");
+    line.append(to_string(this->streetNumber));
+    line.append(" ");
+    line.append(this->streetName );
+    line.append(" ");
+    line.append(this->town );
+    line.append(" ");
+    line.append(to_string(this->state));
+    line.append(" ");
+    line.append(this->zipCode );
+    line.append(" ");
+    line.append(to_string(this->amountDonated));
     return line;
 };

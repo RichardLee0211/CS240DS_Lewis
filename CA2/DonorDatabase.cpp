@@ -58,18 +58,16 @@ int DonorDatabase::add(){
 
 int DonorDatabase::save(){
     string filedir;
-    cout<<"please input file you want to save"<<endl;
+    cout<<"please input file name: ";
     cin>>filedir;
-    fstream fs(filedir, fs.trunc | fs.binary | fs.in | fs.out);
+    fstream fs(filedir, fs.trunc  | fs.in | fs.out);
     if(!fs.is_open())
         cout<<"failed to open file"<<endl;
     for(int i=0; i<this->donorsNum; i++){
         string line = this->donors[i].getAlltoLine();
-        //fs.writej
-        //std::cout.write(reinterpret_cast<char*>(&n), sizeof n) << '\n';
-        //TODO
-
+        fs.write(line.c_str(), line.length())<<'\n';
     }
+    fs.close();
 
 
     return 0;
