@@ -1,2 +1,5 @@
 Li Wenchen richard abcd 21 43 goethe binghamton 0 13905 0.000000
-Li Kun LK abcd 22 43 mainStreet binghamton2 0 13905 1247.500000
+Li Kun LK abcd 22 43 mainStreet binghamton2 0 13905 2481.500000
+hahaha hahaha hahahah hahaha 18 123 hahah defaultTown 0 10000 0.000000
+defaultFirstname defaultLastname richard asdf 18 123 asdf defaultTown 0 12345 0.000000
+asdf asdf asdfqwer abcd 17 0 quit defaultTown 2 10000 0.000000

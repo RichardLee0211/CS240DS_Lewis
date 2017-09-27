@@ -7,4 +7,6 @@ enum State strtoState(string str);
 
 bool isHaveSpecialChar(const char *Str);
 
+bool existsFile (const std::string& name);
+
 #endif

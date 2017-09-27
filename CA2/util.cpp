@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<fstream>
 
 #include"Donor.h"
 #include"DonorDatabase.h"
@@ -50,4 +51,9 @@ bool isHaveSpecialChar(const char *Str){
         }
     }
     return false;
+}
+
+bool existsFile (const std::string& name) {
+        ifstream f(name.c_str());
+        return f.good();
 }

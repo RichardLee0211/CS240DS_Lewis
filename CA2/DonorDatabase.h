@@ -13,7 +13,7 @@ using namespace std;
 
 class DonorDatabase{
 private:
-    //TODO: figure out how to use this
+    //TODO: figure out how to use:
     //donors is a pointer pointing to array
     //*donors, namely donors[0] is a pointer pointing to Donor
     //Donor* donors[];
@@ -21,6 +21,7 @@ private:
     Donor* donors;
     int donorsNum;
     float moneyTotal;
+    int changeFlag;
 
 public:
     DonorDatabase();

@@ -25,7 +25,6 @@ int main(int argc, char* argv[]){
 
     if(argc==3){
         database->load(argv[2]);
-
     }
 
     string cmd;
@@ -35,22 +34,24 @@ int main(int argc, char* argv[]){
         cout<<"1.Login 2.Add 3.Save 4.Load 5.Report 6.Quit "<<endl;
         cout<<"please input command:";
         getline(cin, cmd);
-        if(cmd == "Login")
+        if(cmd == "Login" || cmd=="login")
             database->login();
-        else if(cmd == "Add")
+        else if(cmd == "Add" || cmd=="add")
             database->add();
-        else if(cmd == "Save")
+        else if(cmd == "Save" || cmd=="save")
             database->save();
-        else if(cmd == "Load")
+        else if(cmd == "Load" || cmd=="load")
             database->load();
-        else if(cmd == "Report")
+        else if(cmd == "Report"|| cmd=="report")
             database->report();
-        else if(cmd == "Quit"){
-            database->quit();
-            cout<< "good bye"<<endl;
-            break;
-        }
-        else{
+        else if(cmd == "Quit" || cmd=="quit"){
+            if(database->quit() != 0){
+                cout<<"quit error"<<endl;
+            }else{
+                cout<< "good bye"<<endl;
+                break;
+            }
+        }else{
             cout<<endl<<"wrong cmd: "<<cmd<<endl;
         }
     }

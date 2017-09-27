@@ -23,7 +23,7 @@ class Donor{
         float amountDonated;
     public:
         Donor();
-        int add(); // to add all new information
+        int add(int tags=0);
         int manage(); // to change some or all donor infor
         int view();
         int passwd();
@@ -40,6 +40,10 @@ class Donor{
         string getUserID();
         string getPassword();
         string getAlltoLine();
+        int setIDandPasswd();
+        int setDonorName();
+        int setAge();
+        int setAddress();
 
 
 

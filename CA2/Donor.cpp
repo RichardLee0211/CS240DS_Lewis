@@ -125,67 +125,10 @@ int Donor::total(){
     cout<<setiosflags(ios::fixed)<<setprecision(2)<<this->amountDonated<<endl;
     return 0;
 
-}
+};
 
-int Donor::add(){
+int Donor::setIDandPasswd(){
     string tmpStr;
-
-    /**
-     * donorLastName
-     * contains only letters
-     */
-    while(1){
-	    cout<<endl<<"original is:"<<this->donorLastName<<endl;
-	    cout<<"please input your Last name: ";
-	    getline(cin, tmpStr);
-	    if(tmpStr == ""){
-		    cout<< "Last name remains"<<endl;
-		    break;
-	    }
-        else if(tmpStr.length() >= 20 || tmpStr.length() <= 1){
-		    cout<<"length of name should be more than 1 character and less than 20 character"<<endl;
-		    continue;
-	    }
-	    else if(any_of(tmpStr.begin(), tmpStr.end(), ::isdigit)){
-		    cout<< "name should not contain digit"<<endl;
-		    continue;
-	    }
-	    else{
-		    this->donorLastName = tmpStr;
-		    break;
-
-	    }
-
-    }
-
-    /**
-     * donorFirstName
-     * contains only letters
-     */
-    while(1){
-	    cout<<endl<<"original is:"<<this->donorFirstName<<endl;
-	    cout<<"please input your Firstname: ";
-	    getline(cin, tmpStr);
-	    if(tmpStr == ""){
-		    cout<< "Last name remains"<<endl;
-		    break;
-	    }
-        else if(tmpStr.length() >= 20 || tmpStr.length() <= 1){
-		    cout<<"length of name should be more than 1 character and less than 20 character"<<endl;
-		    continue;
-	    }
-	    else if(any_of(tmpStr.begin(), tmpStr.end(), ::isdigit)){
-		    cout<< "name should not contain digit"<<endl;
-		    continue;
-	    }
-	    else{
-		    this->donorFirstName = tmpStr;
-		    break;
-
-	    }
-
-    }
-
     /**
      * userID
      * contains at least 5 characters but no more than 10,
@@ -200,7 +143,7 @@ int Donor::add(){
 		    break;
 	    }
         else if(tmpStr.length() >= 10 || tmpStr.length() <= 5){
-		    cout<<"length of userID should be more than 1 character and less than 20 character"<<endl;
+		    cout<<"length of userID should be more than 5 character and less than 10 character"<<endl;
 		    continue;
 	    }else if(isHaveSpecialChar(tmpStr.c_str())){
 		    cout<< "userID should not contain special char"<<endl;
@@ -243,11 +186,74 @@ int Donor::add(){
         }
 
     }
+    return 0;
+};
 
-    /**
-     * age
-     * must be at least 18
-     */
+/**
+ * donorLastName
+ * donorFirstName
+ * contains only letters
+ */
+int Donor::setDonorName(){
+    string tmpStr;
+    while(1){
+	    cout<<endl<<"original is:"<<this->donorLastName<<endl;
+	    cout<<"please input your Last name: ";
+	    getline(cin, tmpStr);
+	    if(tmpStr == ""){
+		    cout<< "Last name remains"<<endl;
+		    break;
+	    }
+        else if(tmpStr.length() >= 20 || tmpStr.length() <= 1){
+		    cout<<"length of name should be more than 1 character and less than 20 character"<<endl;
+		    continue;
+	    }
+	    else if(any_of(tmpStr.begin(), tmpStr.end(), ::isdigit)){
+		    cout<< "name should not contain digit"<<endl;
+		    continue;
+	    }
+	    else{
+		    this->donorLastName = tmpStr;
+		    break;
+
+	    }
+
+    }
+
+    while(1){
+	    cout<<endl<<"original is:"<<this->donorFirstName<<endl;
+	    cout<<"please input your Firstname: ";
+	    getline(cin, tmpStr);
+	    if(tmpStr == ""){
+		    cout<< "Last name remains"<<endl;
+		    break;
+	    }
+        else if(tmpStr.length() >= 20 || tmpStr.length() <= 1){
+		    cout<<"length of name should be more than 1 character and less than 20 character"<<endl;
+		    continue;
+	    }
+	    else if(any_of(tmpStr.begin(), tmpStr.end(), ::isdigit)){
+		    cout<< "name should not contain digit"<<endl;
+		    continue;
+	    }
+	    else{
+		    this->donorFirstName = tmpStr;
+		    break;
+
+	    }
+
+    }
+
+    return 0;
+
+};
+
+/**
+ * age
+ * must be at least 18
+ */
+int Donor::setAge(){
+    string tmpStr;
     while(1){
 	    cout<<endl<<"original is:"<<this->age<<endl;
 	    cout<<"please input your age(sorry, prefer birthday, design document require): ";
@@ -270,7 +276,14 @@ int Donor::add(){
 	    }
 
     }
+    return 0;
+};
 
+/**
+ * set Address
+ */
+int Donor::setAddress(){
+    string tmpStr;
     /**
      * streetNumber
      * must be positive
@@ -360,7 +373,8 @@ int Donor::add(){
      */
     while(1){
         cout<<endl<<"origional state is: "<<this->state<<endl;
-        cout<<"please input 1.NY, 2.PA, 3.RI, 4.NH, 5.VT, 6.MA, 7.CT, 8.ME"<<endl;
+        cout<<" 1.NY, 2.PA, 3.RI, 4.NH, 5.VT, 6.MA, 7.CT, 8.ME"<<endl;
+        cout<<"please input: ";
 	    getline(cin, tmpStr);
 	    if(tmpStr == ""){
 		    cout<< "state name remains"<<endl;
@@ -408,13 +422,27 @@ int Donor::add(){
 
     }
 
+    return 0;
+};
+
+/**
+ * to add all new information,
+ * if tags is set to 1, remove setter of userID and passwd
+ */
+int Donor::add(int tags){
+    string tmpStr;
+    this->setDonorName();
+    this->setAge();
+    if(tags == 0){
+        this->setIDandPasswd();
+    }
+    this->setAddress();
     /**
      * amountDonated
      * float, non-negative, total amount donated must not grow beyond $5,000
      */
     cout<<"your amount donated will be $0 initially"<<endl;
     this->amountDonated = 0;
-
     cout<<endl;
     this->view();
     return 0;
@@ -424,7 +452,7 @@ int Donor::manage(){
     cout<<endl<<"your infor list below: "<<endl;
     this->view();
     cout<<"now, change your infor, use return to remain same. "<< endl;
-    this->add();
+    this->add(1);
     return 0;
 }
 
@@ -441,24 +469,23 @@ int Donor::donorMain(){
         cout<<"1.Add 2.Manage 3.View 4.Donate 5.Total 6.Logout"<<endl;
         cout<<"please input command:";
         getline(cin, cmd);
-        if(cmd == "Add")
+        if(cmd == "Add" || cmd=="add")
            this->add();
-        else if(cmd == "Manage")
+        else if(cmd == "Manage" || cmd=="manage")
             this->manage();
-        else if(cmd == "View")
+        else if(cmd == "View" || cmd=="view")
             this->view();
-        else if(cmd == "Donate")
+        else if(cmd == "Donate" || cmd=="donate")
             this->donate();
-        else if(cmd == "Total")
+        else if(cmd == "Total" || cmd=="total")
             this->total();
-        else if(cmd == "Quit"){
+        else if(cmd == "Quit" || cmd=="quit"){
             cout<< "good bye"<<endl;
             break;
-        }else if(cmd == "Logout"){
+        }else if(cmd == "Logout" || cmd=="logout"){
             this->logout();
             break;
-        }
-        else{
+        }else{
             cout<<endl<<"wrong cmd: "<<cmd<<endl;
         }
 

@@ -1,5 +1,5 @@
 # project name and intro
-TARGET = Donate.out
+TARGET = Donate
 OBJS =  main.o Donor.o DonorDatabase.o util.o
 CC = g++
 DEBUG = -g
