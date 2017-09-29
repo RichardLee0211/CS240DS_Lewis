@@ -35,6 +35,6 @@ clean:
 
 tar:
 	tar -czvf projectname.tar.gz *.cpp *.h\
-		Makefile README.md
+		Makefile README.md *.txt
 	mkdir backup.d
 	mv project.tar.gz backup.d
