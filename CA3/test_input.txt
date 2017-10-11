@@ -1,0 +1,6 @@
+create userid1 passwd1 first1 last1
+create userid2 passwd2 first2 last2
+create userid3 passwd3 first3 last3
+create userid4 passwd4 first4 last4
+create userid5 passwd5 first5 last5
+view

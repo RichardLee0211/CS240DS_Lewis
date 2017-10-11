@@ -8,11 +8,10 @@
 #include"FBLPostLL.h"
 #include"FBLPost.h"
 
-
 using namespace std;
 
 int main(){
-    FBLUserLL userLL = new FBLUser();
-    userLL.mainLoop();
+    FBLUserLL *userLL = new FBLUserLL();
+    userLL->mainLoop();
     return 0;
 }

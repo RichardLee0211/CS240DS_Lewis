@@ -14,10 +14,13 @@ class FBLUserLL{
         uint number;
     public:
         FBLUserLL();
+        int printLL();
 
     public:
         int create();
+        int create(string userID, string passwd, string firstName, string lastName);
         int login();
+        int login(string userID);
         int quit();
         int mainLoop();
 };
