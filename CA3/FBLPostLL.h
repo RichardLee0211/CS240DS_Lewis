@@ -17,6 +17,8 @@ class FBLPostLL{
     public:
         FBLPostLL();
         int printLL();
+        int removeHead();
+        int empty();
 
     public:
         //int create();

@@ -51,9 +51,37 @@ int FBLPostLL::create(string text){
  */
 int FBLPostLL::read(){
     FBLPost *tmp = this->head;
-    while(tmp != NULL){
+    if(tmp != NULL){
+        tmp->view();
     }
+    this->removeHead();
     return 0;
+};
+
+/**
+ * remove head
+ * if List is empty, return -1
+ */
+int FBLPostLL::removeHead(){
+    if(this->empty())
+        return -1;
+    FBLPost *tmp = this->head->next;
+    delete this->head;
+    this->head = tmp;;
+    this->head->pre = NULL;
+    this->number--;
+    return 0;
+
+};
+
+/**
+ * is it empty
+ */
+int FBLPostLL::empty(){
+    if(this->number == 0)
+        return 1;
+    else
+        return 0;
 };
 
 /**

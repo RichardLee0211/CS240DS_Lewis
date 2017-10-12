@@ -17,8 +17,12 @@ class FBLUserLL{
         int printLL();
 
     public:
-        int create();
-        int create(string userID, string passwd, string firstName, string lastName);
+        //int create();
+        int create(
+                string userID="defaultUserID",
+                string passwd="defaultPasswd",
+                string firstName="defaultFirstName",
+                string lastName="defaultLastName");
         int login();
         int login(string userID);
         int quit();

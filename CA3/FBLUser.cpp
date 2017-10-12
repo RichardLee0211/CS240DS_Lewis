@@ -16,7 +16,8 @@ FBLUser::FBLUser(){
 };
 
 /**
- * CREATE <Userid> <Password> <First> <Last>
+ * value constructor
+ * for CREATE <Userid> <Password> <First> <Last>
  */
 FBLUser::FBLUser(string userID, string passwd, string firstName, string lastName){
     this->lastName = lastName;
@@ -30,7 +31,7 @@ FBLUser::FBLUser(string userID, string passwd, string firstName, string lastName
 };
 
 /**
- * POST <text>
+ * POST
  */
 int FBLUser::post(){
     string text;
@@ -42,6 +43,9 @@ int FBLUser::post(){
     return 0;
 };
 
+/**
+ * POST <text>
+ */
 int FBLUser::post(string text){
     //TODO: exam text
     this->postLL->create();
@@ -50,8 +54,17 @@ int FBLUser::post(string text){
 
 /**
  * read first post and remove it
+ * if list is empty, return -1
+ * if it's -1, print Nothing to READ
+ * TODO: for better design, maybe I should keep input and output in main
+ * and reset this to return string
  */
 int FBLUser::read(){
+    if(this->postLL->empty())
+        return -1;
+    else{
+        this->postLL->read();
+    }
     return 0;
 };
 

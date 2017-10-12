@@ -39,7 +39,7 @@ util.o: util.cpp util.h
 run:
 	./FBL
 
-run_test:
+test_run:
 	cat test_input.txt | ./FBL
 
 # Specify the object files and executables that are generated
