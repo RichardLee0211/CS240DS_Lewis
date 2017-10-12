@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<climits>
 
 #include"FBLUserLL.h"
 #include"FBLUser.h"
@@ -131,15 +132,22 @@ int FBLUserLL::mainLoop(){
         cout<<"2. LOGIN <userID>"<<endl;
         cout<<"please input command:";
         getline(cin, strCmd);
-        //TODO: ?? how to use test_input to test
-        //keep loop
+#if DEBUG
+        cout<<endl;
+        cout<<"cmd from test: "<<strCmd<<endl;
+        cout<<endl;
+
+#endif
+        //TODO: ?? how to use test_input to test, it keeps loop
         //cin.ignore(INT_MAX, '\n');
-        cin.ignore(INT_MAX);
         //cin.clear();
         splitString(strCmd, vectCmd, " ");
         if(vectCmd.empty()){
-            cout<<"empty cmd"<<endl;
-            break;
+            cout<<"wrong cmd: empty cmd"<<endl;
+#if DEBUG
+            cout<<"ctrl-c to exit"<<endl;
+            while(1);
+#endif
         }
         else if(vectCmd[0]=="create" ||
                 vectCmd[0]=="Create" || vectCmd[0]=="CREATE"){

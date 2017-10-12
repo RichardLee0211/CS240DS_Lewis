@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<climits>
 
 #include"FBLUser.h"
 #include"util.h"
@@ -48,7 +49,7 @@ int FBLUser::post(){
  */
 int FBLUser::post(string text){
     //TODO: exam text
-    this->postLL->create();
+    this->postLL->create(text);
     return 0;
 }
 
@@ -77,7 +78,6 @@ int FBLUser::mainLoop(){
         string strCmd;
         vector<string> vectCmd;
         cout<<endl;
-        cout<<"this is User interface"<<endl;
         cout<<"welcome, "<<this->getUserID()<<endl;
         cout<<"1.read 2.post 3.view 4.logout"<<endl;
         cout<<"POST <text>"<<endl;
@@ -87,21 +87,27 @@ int FBLUser::mainLoop(){
 #endif
         cout<<"please input command:";
         getline(cin, strCmd);
-        //TODO: ?? how to use test_input to test
-        //keep loop
-        cin.ignore(INT_MAX, '\n');
+#if DEBUG
+        cout<<endl;
+        cout<<"cmd from test: "<<strCmd<<endl;
+        cout<<endl;
+
+#endif
+        //TODO: ?? how to use test_input to test, it keeps loop
+        //cin.ignore(INT_MAX, '\n');
         splitString(strCmd, vectCmd, " ");
         if(vectCmd.empty()){
-            cout<<"empty cmd"<<endl;
-            continue;
+            cout<<"wrong cmd: empty cmd"<<endl;
+#if DEBUG
+            cout<<"ctrl-c to exit"<<endl;
+            while(1);
+#endif
         }
         else if(     vectCmd[0]=="read" ||
                 vectCmd[0]=="Read" ||
                 vectCmd[0]=="READ"){
-            if(vectCmd.size() == 5){
-            }else{
-                this->read();
-            }
+            if(this->read() == -1)
+                cout<<"nothing to read"<<endl;
         }
         else if(vectCmd[0]=="view" ||
                 vectCmd[0]=="View" ||
@@ -123,7 +129,6 @@ int FBLUser::mainLoop(){
             }else{
                 this->post();
             }
-            break;
         }
 #if DEBUG
         else if(vectCmd[0]=="readPosts" ||

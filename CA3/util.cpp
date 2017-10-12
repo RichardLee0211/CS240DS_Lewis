@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<fstream>
+#include<cstring>
 
 
 using namespace std;
@@ -27,7 +28,7 @@ bool isHaveSpecialChar(const char *Str){
     char Temp[256];
     char *p;
     strcpy(Temp,Str);
-    for(int i = 0;i < strlen(str);i++)
+    for(unsigned int i = 0;i < strlen(str);i++)
     {
         p =  strchr(Temp, str[i]);
         if(p != NULL)

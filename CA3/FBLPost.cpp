@@ -26,6 +26,6 @@ FBLPost::FBLPost(string content){
 };
 
 int FBLPost::view(){
-    cout<<this->content<<" likes: "<<this-likes<<endl;
+    cout<<this->content<<" likes: "<<this->likes<<endl;
     return 0;
 }

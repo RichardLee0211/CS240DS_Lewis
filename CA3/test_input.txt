@@ -4,3 +4,18 @@ create userid3 passwd3 first3 last3
 create userid4 passwd4 first4 last4
 create userid5 passwd5 first5 last5
 view
+login userid1
+post text1
+post text2
+post text3
+post text4
+post text5
+read
+read
+read
+read
+read
+read
+read
+read
+logout

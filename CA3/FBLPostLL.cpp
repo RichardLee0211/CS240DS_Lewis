@@ -68,7 +68,8 @@ int FBLPostLL::removeHead(){
     FBLPost *tmp = this->head->next;
     delete this->head;
     this->head = tmp;;
-    this->head->pre = NULL;
+    if(this->head != NULL)
+        this->head->pre = NULL;
     this->number--;
     return 0;
 

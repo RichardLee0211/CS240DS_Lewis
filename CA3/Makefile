@@ -1,13 +1,14 @@
 # project name and intro
-TARGET = FBL
-OBJS =  main.o \
+TARGET := FBL
+OBJDIR := bin
+OBJS :=  $(addprefix $(OBJDIR)/, main.o \
 		FBLUser.o FBLUserLL.o \
 		FBLPost.o FBLPostLL.o \
-		util.o
-CC = g++
-DEBUG = -g
-CFLAGS = -Wall -c $(DEBUG)
-LFLAGS = -Wall $(DEBUG)
+		util.o)
+CC := g++
+DEBUG := -g
+CFLAGS := -Wall -c $(DEBUG)
+LFLAGS := -Wall $(DEBUG)
 
 # Specifiy the target
 all: $(TARGET)
@@ -17,35 +18,42 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
 
-# Specify how the object files should be created from source files
-main.o: main.cpp FBLUser.h FBLUserLL.h util.h
-	$(CC) $(CFLAGS) main.cpp
+# objects
+$(OBJS) : | $(OBJDIR)
 
-FBLUser.o: FBLUser.cpp FBLUser.h util.h
-	$(CC) $(CFLAGS) FBLUser.cpp
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
-FBLUserLL.o: FBLUserLL.cpp FBLUserLL.h util.h
-	$(CC) $(CFLAGS) FBLUserLL.cpp
+$(OBJDIR)/main.o: main.cpp FBLUserLL.h util.h
+	$(CC) $(CFLAGS) $< -o $@
 
-FBLPost.o: FBLPost.cpp FBLPost.h util.h
-	$(CC) $(CFLAGS) FBLPost.cpp
+$(OBJDIR)/FBLUser.o: FBLUser.cpp FBLUser.h util.h
+	$(CC) $(CFLAGS) $< -o $@
 
-FBLPostLL.o: FBLPostLL.cpp FBLPostLL.h util.h
-	$(CC) $(CFLAGS) FBLPostLL.cpp
+$(OBJDIR)/FBLUserLL.o: FBLUserLL.cpp FBLUserLL.h util.h
+	$(CC) $(CFLAGS) $< -o $@
 
-util.o: util.cpp util.h
-	$(CC) $(CFLAGS) util.cpp
+$(OBJDIR)/FBLPost.o: FBLPost.cpp FBLPost.h util.h
+	$(CC) $(CFLAGS) $< -o $@
 
+$(OBJDIR)/FBLPostLL.o: FBLPostLL.cpp FBLPostLL.h util.h
+	$(CC) $(CFLAGS) $< -o $@
+
+$(OBJDIR)/util.o: util.cpp util.h
+	$(CC) $(CFLAGS) $< -o $@
+
+# run and test
 run:
-	./FBL
+	./$(TARGET)
 
-test_run:
-	cat test_input.txt | ./FBL
+test:
+	cat test_input.txt | ./$(TARGET)
 
 # Specify the object files and executables that are generated
 # and need to be removed to re-compile the whole thing
+.PHONY: clean
 clean:
-	rm -f *.o $(TARGET)
+	rm -f $(OBJS) $(TARGET)
 	# rm -f *.tar.gz
 
 tar:
