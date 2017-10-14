@@ -170,3 +170,9 @@ int FBLUser::readPosts(){
     this->postLL->view();
     return 0;
 }
+
+int FBLUser::isCorrectPasswd(string passwd){
+    if(this->passwd == passwd)
+        return 1;
+    return 0;
+};

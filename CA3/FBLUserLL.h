@@ -25,6 +25,7 @@ class FBLUserLL{
                 string lastName="defaultLastName");
         int login();
         int login(string userID);
+        int login(string userID, string passwd);
         int quit();
         int mainLoop();
 };

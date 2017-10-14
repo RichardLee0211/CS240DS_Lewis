@@ -32,6 +32,7 @@ class FBLUser{
         string getUserID();
         int quit();
         int readPosts();
+        int isCorrectPasswd(string passwd);
 
     public:
         int post();
