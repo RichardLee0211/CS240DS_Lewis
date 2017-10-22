@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<stdlib.h>
+#include<vector>
 
 #include"FBLPostLL.h"
 
@@ -15,6 +16,7 @@ class FBLUser{
         string userID;
         string passwd;
         FBLPostLL *postLL;
+        vector<FBLUser*> vecFriends;
 
     public:
         // still think it's ugly,
@@ -32,6 +34,7 @@ class FBLUser{
         string getUserID();
         int quit();
         int readPosts();
+        int addFriend(string userID);
 
     public:
         int post();

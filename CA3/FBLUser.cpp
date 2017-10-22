@@ -170,3 +170,8 @@ int FBLUser::readPosts(){
     this->postLL->view();
     return 0;
 }
+
+int FBLUser::addFriend(string userID){
+    //this->vecFriends.push_back();
+    return 0;
+};
