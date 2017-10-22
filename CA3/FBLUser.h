@@ -35,6 +35,7 @@ class FBLUser{
         int quit();
         int readPosts();
         int addFriend(string userID);
+        int isCorrectPasswd(string passwd);
 
     public:
         int post();

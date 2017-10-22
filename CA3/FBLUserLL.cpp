@@ -87,7 +87,8 @@ int FBLUserLL::login(){
     cout<<"please input your userID: ";
     cin>>userID;
     if(!userID.empty()){
-        this->login(userID);
+        if(this->login(userID) != 0)
+            return -1;
     }
     return 0;
 };
@@ -96,23 +97,36 @@ int FBLUserLL::login(){
  * LOGIN <Userid>
  */
 int FBLUserLL::login(string userID){
-    //TODO: to exam the userID
-
-    this->curr = this->head;
-    while(this->curr != NULL){
-        if(this->curr->getUserID() == userID){
-            this->curr->mainLoop();
-            break;
-        }
-        this->curr = this->curr->next;
-    }
-    return 1;
+    string passwd;
+    cout<<"input your passwd: ";
+    cin>>passwd;
+    if(this->login(userID, passwd) != 0)
+        return -1;
+    return 0;
 }
 
 /**
  * LOGIN <userid> <passwd>
- * TODO:
  */
+int FBLUserLL::login(string userID, string passwd){
+    //TODO: to exam the userID
+
+    int count = 0;
+    this->curr = this->head;
+    while(this->curr != NULL){
+        if(this->curr->getUserID() == userID &&
+                this->curr->isCorrectPasswd(passwd)){
+            this->curr->mainLoop();
+            break;
+        }
+        this->curr = this->curr->next;
+        count++;
+    }
+    if(count == this->number){
+        return -1;
+    }
+    return 0;
+}
 
 /**
  * QUIT
@@ -159,11 +173,21 @@ int FBLUserLL::mainLoop(){
         }
         else if(vectCmd[0]=="login" ||
                 vectCmd[0]=="Login" || vectCmd[0]=="LOGIN"){
-            if(vectCmd.size() == 2){
-                this->login(vectCmd[1]);
-            }else{
-                this->login();
+            int result = -1;
+            if(vectCmd.size() == 3){
+                result = this->login(vectCmd[1], vectCmd[2]);
             }
+            else if(vectCmd.size() == 2){
+                result = this->login(vectCmd[1]);
+            }
+            else{
+                result = this->login();
+            }
+
+            if(result == -1 ){
+                cout<<"login fall"<<endl;
+            }
+
         }
         else if(vectCmd[0]=="view" ||
                 vectCmd[0]=="View" || vectCmd[0]=="VIEW"){

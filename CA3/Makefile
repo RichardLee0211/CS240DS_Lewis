@@ -54,6 +54,7 @@ test:
 .PHONY: clean
 clean:
 	rm -f $(OBJS) $(TARGET)
+	rm -rf $(OBJDIR)
 	# rm -f *.tar.gz
 
 tar:

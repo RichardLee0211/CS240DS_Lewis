@@ -174,4 +174,10 @@ int FBLUser::readPosts(){
 int FBLUser::addFriend(string userID){
     //this->vecFriends.push_back();
     return 0;
+}
+
+int FBLUser::isCorrectPasswd(string passwd){
+    if(this->passwd == passwd)
+        return 1;
+    return 0;
 };
