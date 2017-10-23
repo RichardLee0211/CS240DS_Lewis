@@ -5,6 +5,11 @@
 #include"FBLUser.h"
 #include"util.h"
 
+// TODO: to find a better design,
+// maybe I shouldn't put mainloop as member functions of FBLUser and FBLUserLL
+// but this do need info from FBLUserLL
+#include"FBLUserLL.h"
+
 FBLUser::FBLUser(){
     this->lastName = "defaultLastName";
     this->firstName = "defaultFirstName";
@@ -48,7 +53,7 @@ int FBLUser::post(){
  * POST <text>
  */
 int FBLUser::post(string text){
-    //TODO: exam text
+    //TODO: check text for invalid input
     this->postLL->create(text);
     return 0;
 }
@@ -79,12 +84,9 @@ int FBLUser::mainLoop(){
         vector<string> vectCmd;
         cout<<endl;
         cout<<"welcome, "<<this->getUserID()<<endl;
-        cout<<"1.read 2.post 3.view 4.logout"<<endl;
-        cout<<"POST <text>"<<endl;
-#if DEBUG
-        cout<<"5. readPosts"<<endl;
-
-#endif
+        cout<<"1.read 2.post 3.view "<<endl;
+        cout<<"4.friend 5.myfeed 6.mywall"<<endl;
+        cout<<"when finished, you can type \"logout \""<<endl;
         cout<<"please input command:";
         getline(cin, strCmd);
 #if DEBUG
@@ -93,33 +95,27 @@ int FBLUser::mainLoop(){
         cout<<endl;
 
 #endif
-        //TODO: ?? how to use test_input to test, it keeps loop
-        //cin.ignore(INT_MAX, '\n');
         splitString(strCmd, vectCmd, " ");
         if(vectCmd.empty()){
             cout<<"wrong cmd: empty cmd"<<endl;
 #if DEBUG
             cout<<"ctrl-c to exit"<<endl;
-            while(1);
+            while(1); // TODO: which one could replace this stupid function.
 #endif
-        }
-        else if(     vectCmd[0]=="read" ||
-                vectCmd[0]=="Read" ||
-                vectCmd[0]=="READ"){
-            if(this->read() == -1)
-                cout<<"nothing to read"<<endl;
         }
         else if(vectCmd[0]=="view" ||
                 vectCmd[0]=="View" ||
                 vectCmd[0]=="VIEW"){
             this->printUser();
         }
-        else if(vectCmd[0]=="logout" ||
-                vectCmd[0]=="Logout" ||
-                vectCmd[0]=="LOGOUT"){
-            this->logout();
-            cout<< "good bye"<<this->getUserID()<<endl;
-            break;
+        else if(vectCmd[0]=="friend" ||
+                vectCmd[0]=="Friend" ||
+                vectCmd[0]=="FRIEND"){
+            if(vectCmd.size() == 2){
+                this->addFriend(vectCmd[1]);
+            }else{
+                this->addFriend();
+            }
         }
         else if(vectCmd[0]=="post" ||
                 vectCmd[0]=="Post" ||
@@ -130,18 +126,47 @@ int FBLUser::mainLoop(){
                 this->post();
             }
         }
-#if DEBUG
-        else if(vectCmd[0]=="readPosts" ||
-                vectCmd[0]=="ReadPosts" ||
-                vectCmd[0]=="READPOSTS"){
+        else if(vectCmd[0]=="read" ||
+                vectCmd[0]=="Read" ||
+                vectCmd[0]=="READ"){
+            if(this->read() == -1)
+                cout<<"nothing to read"<<endl;
+        }
+        else if(vectCmd[0]=="mywall" ||
+                vectCmd[0]=="Mywall" ||
+                vectCmd[0]=="MYWALL"){
             this->postLL->view();
         }
-#endif
+        else if(vectCmd[0]=="myfeed" ||
+                vectCmd[0]=="Myfeed" ||
+                vectCmd[0]=="MYFEED"){
+            //TODO: may use std::list this time
+            //this->postLL->view();
+        }
+        else if(vectCmd[0]=="help" ||
+                vectCmd[0]=="h" ||
+                vectCmd[0]=="HELP" ||
+                vectCmd[0]=="Help"){
+            cout<<"## read post"<<endl;
+            cout<<"## POST <text>"<<endl;
+            cout<<"## view info of user"<<endl;
+            cout<<"## friend <userid>"<<endl;
+            cout<<"## myfriend: print out friends' name"<<endl;
+            cout<<"## myfeed: print out feed post"<<endl;
+            cout<<"## mywall: print out my posts"<<endl;
+        }
         else if(vectCmd[0]=="quit" ||
                 vectCmd[0]=="Quit" ||
                 vectCmd[0]=="QUIT"){
             this->quit();
             cout<< "good bye"<<endl;
+            break;
+        }
+        else if(vectCmd[0]=="logout" ||
+                vectCmd[0]=="Logout" ||
+                vectCmd[0]=="LOGOUT"){
+            this->logout();
+            cout<< "good bye"<<this->getUserID()<<endl;
             break;
         }
         else{
@@ -171,13 +196,15 @@ int FBLUser::readPosts(){
     return 0;
 }
 
-int FBLUser::addFriend(string userID){
-    //this->vecFriends.push_back();
-    return 0;
-}
-
 int FBLUser::isCorrectPasswd(string passwd){
     if(this->passwd == passwd)
         return 1;
     return 0;
 };
+
+//TODO: how to get FBLUser pointer??
+int FBLUser::addFriend(string userID){
+    FBLUser* tmp = getPointer(userID);
+    //this->vecFriends.push_back();
+    return 0;
+}

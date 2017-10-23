@@ -12,6 +12,7 @@ class FBLUserLL{
         FBLUser* end;
         FBLUser* curr;
         uint number;
+
     public:
         FBLUserLL();
         int printLL();
@@ -28,5 +29,8 @@ class FBLUserLL{
         int login(string userID, string passwd);
         int quit();
         int mainLoop();
+
+        friend FBLUser* getPointer(string userID);
+        FBLUser* getPointer(string userID);
 };
 #endif

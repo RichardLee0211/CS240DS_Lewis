@@ -152,9 +152,6 @@ int FBLUserLL::mainLoop(){
         cout<<endl;
 
 #endif
-        //TODO: ?? how to use test_input to test, it keeps loop
-        //cin.ignore(INT_MAX, '\n');
-        //cin.clear();
         splitString(strCmd, vectCmd, " ");
         if(vectCmd.empty()){
             cout<<"wrong cmd: empty cmd"<<endl;
@@ -215,4 +212,10 @@ int FBLUserLL::printLL(){
     }
     return 0;
 
+};
+
+FBLUser* FBLUserLL::getPointer(string userID){
+    //TODO:
+    throw "not implement";
+    return NULL;
 };
