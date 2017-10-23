@@ -117,6 +117,11 @@ int FBLUser::mainLoop(){
                 this->addFriend();
             }
         }
+        else if(vectCmd[0]=="myfriend" ||
+                vectCmd[0]=="MyFriend" ||
+                vectCmd[0]=="MYFRIEND"){
+                this->myfriends();
+        }
         else if(vectCmd[0]=="post" ||
                 vectCmd[0]=="Post" ||
                 vectCmd[0]=="POST"){
@@ -202,9 +207,41 @@ int FBLUser::isCorrectPasswd(string passwd){
     return 0;
 };
 
-//TODO: how to get FBLUser pointer??
 int FBLUser::addFriend(string userID){
-    FBLUser* tmp = getPointer(userID);
+    FBLUser* tmp = userLL->getPointer(userID);
+    if(tmp != NULL){
+        this->vecFriends.push_back(tmp);
+        return 0;
+    }
+    else{
+        cout<<"failed to find "<<userID<<endl;
+        return -1;
+    }
+}
+
+//TODO:
+int FBLUser::addFriend(){
+    //FBLUser* tmp = getPointer(userID);
     //this->vecFriends.push_back();
+    userLL->printLL();
+    throw "not implement";
     return 0;
+}
+
+int FBLUser::myfriends(){
+    //TODO: quickfix report, range-base 'for' loops are not allowd in C++98 mode
+    //how to mute this
+    for(FBLUser* ptrFriend : this->vecFriends){
+        cout<<ptrFriend->getFirstName()<<" "<<ptrFriend->getFirstName()<<endl;
+    }
+    cout<<endl;
+    return 0;
+};
+
+string FBLUser::getLastName(){
+    return this->lastName;
+}
+
+string FBLUser::getFirstName(){
+    return this->firstName;
 }

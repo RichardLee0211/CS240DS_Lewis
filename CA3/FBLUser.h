@@ -32,6 +32,8 @@ class FBLUser{
         FBLUser(string userID, string passwd, string firstName, string lastname);
         int printUser();
         string getUserID();
+        string getLastName();
+        string getFirstName();
         int quit();
         int readPosts();
         int addFriend(string userID);

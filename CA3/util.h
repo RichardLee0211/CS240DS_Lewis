@@ -10,4 +10,7 @@ bool isHaveSpecialChar(const char *Str);
 
 bool existsFile (const std::string& name);
 
+#include"FBLUserLL.h"
+
+extern FBLUserLL *userLL;
 #endif

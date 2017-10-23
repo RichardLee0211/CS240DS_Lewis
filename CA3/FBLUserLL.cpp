@@ -111,7 +111,7 @@ int FBLUserLL::login(string userID){
 int FBLUserLL::login(string userID, string passwd){
     //TODO: to exam the userID
 
-    int count = 0;
+    uint count = 0;
     this->curr = this->head;
     while(this->curr != NULL){
         if(this->curr->getUserID() == userID &&
@@ -216,6 +216,11 @@ int FBLUserLL::printLL(){
 
 FBLUser* FBLUserLL::getPointer(string userID){
     //TODO:
-    throw "not implement";
+    FBLUser* tmp = this->head;
+    while(tmp != NULL){
+        if(tmp->getUserID() == userID)
+            return tmp;
+        tmp = tmp->next;
+    }
     return NULL;
 };

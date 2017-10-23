@@ -7,7 +7,7 @@ OBJS :=  $(addprefix $(OBJDIR)/, main.o \
 		util.o)
 CC := g++
 DEBUG := -g
-CFLAGS := -Wall -c $(DEBUG)
+CFLAGS := -Wall -std=c++11 -c $(DEBUG)
 LFLAGS := -Wall $(DEBUG)
 
 # Specifiy the target

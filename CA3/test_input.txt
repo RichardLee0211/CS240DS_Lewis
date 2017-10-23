@@ -4,7 +4,7 @@ create userid3 passwd3 first3 last3
 create userid4 passwd4 first4 last4
 create userid5 passwd5 first5 last5
 view
-login userid passwd2
+login userid1 passwd1
 post text1
 post text2
 post text3
@@ -18,4 +18,8 @@ read
 read
 read
 read
+friend userid2
+friend userid3
+friend userid4
+myfriend
 logout

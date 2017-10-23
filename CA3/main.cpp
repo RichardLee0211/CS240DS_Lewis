@@ -10,8 +10,12 @@
 
 using namespace std;
 
+// A lazy implement, let all functions and classes could access useLL
+// and in util.h, I add
+// extern FBLUserLL* userLL;
+FBLUserLL *userLL = new FBLUserLL();
+
 int main(){
-    FBLUserLL *userLL = new FBLUserLL();
     userLL->mainLoop();
     return 0;
 }
