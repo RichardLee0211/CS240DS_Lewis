@@ -14,13 +14,16 @@ a. move FBLUser::mainLoop and FBLUserLL::mainLoop to main, then both of mainLoop
 b. multi-thread coding, one for main thread, for userLL, and a new thread for each login user. HAHAHA, could be hard
 c. make userLL global, genius, U are the best
 
-    //TODO: quickfix report, range-base 'for' loops are not allowd in C++98 mode
-    //how to mute this
-    from here, https://stackoverflow.com/questions/18158772/how-to-add-c11-support-to-syntastic-vim-plugin
-    maybe I should use clang++ and YCM
+//TODO: quickfix report, range-base 'for' loops are not allowd in C++98 mode
+//how to mute this
+from here, https://stackoverflow.com/questions/18158772/how-to-add-c11-support-to-syntastic-vim-plugin
+maybe I should use clang++ and YCM
 
 
-        vector<FBLUser*> vecFriends;
-        //TODO: report corrupted double-linked list
-        list<string> *myFeed;
-        need more lookinto
+vector<FBLUser*> vecFriends;
+//TODO: report corrupted double-linked list
+list<string> *myFeed;
+need more lookinto
+
+//TODO: give seg fault
+when have a pointer in class, constructor needs to implement this

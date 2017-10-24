@@ -1,0 +1,288 @@
+cat test_input.txt | ./FBL
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: create userid1 passwd1 first1 last1
+
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: create userid2 passwd2 first2 last2
+
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: create userid3 passwd3 first3 last3
+
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: create userid4 passwd4 first4 last4
+
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: create userid5 passwd5 first5 last5
+
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: view
+
+last1	first1
+last2	first2
+last3	first3
+last4	first4
+last5	first5
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: login userid1 passwd1
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: friend userid2
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: friend userid3
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: friend userid4
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: myfriend
+
+first2 first2
+first3 first3
+first4 first4
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: myfeed
+
+empty feed
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: post text1 from user1
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: post text2 from user1
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: post text3 from user1
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: post text4 from user1
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: post text5 from user1
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: mywall
+
+text1 from user1 likes: 0
+text2 from user1 likes: 0
+text3 from user1 likes: 0
+text4 from user1 likes: 0
+text5 from user1 likes: 0
+end of Posts
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: logout
+
+good byeuserid1
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: login userid2 passwd2
+
+
+welcome, userid2
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: myfeed
+
+text1 from user1
+text2 from user1
+text3 from user1
+text4 from user1
+text5 from user1
+
+
+welcome, userid2
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: friend userid3
+
+
+welcome, userid2
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: friend userid4
+
+
+welcome, userid2
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: friend userid5
+
+
+welcome, userid2
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: post test1_from_userid2
+
+
+welcome, userid2
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: post test2_from_userid2
+
+
+welcome, userid2
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: post test3_from_userid2
+
+
+welcome, userid2
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: logout
+
+good byeuserid2
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: login userid1 passwd1
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: myfeed
+
+test1_from_userid2
+test2_from_userid2
+test3_from_userid2
+
+
+welcome, userid1
+1.read 2.post 3.view 
+4.friend 5.myfeed 6.mywall
+7.logout
+please input command:
+cmd from test: logout
+
+good byeuserid1
+
+this is Top interface
+1.create 2.login 3.view 4.quit
+1. CREATE <Userid> <Password> <First> <Last>
+2. LOGIN <userID>
+please input command:
+cmd from test: 
+
+wrong cmd: empty cmd
+ctrl-c to exit

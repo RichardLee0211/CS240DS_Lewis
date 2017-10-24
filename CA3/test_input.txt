@@ -8,14 +8,28 @@ login userid1 passwd1
 friend userid2
 friend userid3
 friend userid4
+friend userid5
 myfriend
-myfeed
-post text1
-post text2
-post text3
-post text4
-post text5
+post text1 from user1
+post text2 from user1
+post text3 from user1
+post text4 from user1
+post text5 from user1
 mywall
 logout
 login userid2 passwd2
+myfeed
+friend userid3
+friend userid4
+friend userid5
+post test1_from_userid2
+post test2_from_userid2
+post test3_from_userid2
+logout
+login userid1 passwd1
+myfeed
+logout
+login userid1 passwd1
+myfeed
+read
 myfeed

@@ -17,10 +17,10 @@ class FBLUser{
         string userID;
         string passwd;
         FBLPostLL *postLL;
-        //TODO: ??when I try to make it a pointer, give me a segment fault
         vector<FBLUser*> vecFriends;
+
         //TODO: ??report corrupted double-linked list when try list<string> myFeed
-        list<string> *myFeed;
+        list<string> *plistMyFeed;
 
     public:
         // still think it's ugly,
@@ -50,7 +50,8 @@ class FBLUser{
     public:
         int post();
         int post(string text);
-        int read();
+        int readandRemovePost();
+        int readandRemoveFeed();
         int logout();
         int mainLoop();
 };

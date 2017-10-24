@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<climits>
+#include<list>
 
 #include"FBLUser.h"
 #include"util.h"
@@ -19,6 +20,7 @@ FBLUser::FBLUser(){
 
     this->next = NULL;
     this->prev = NULL;
+    this->plistMyFeed = new list<string>;
 };
 
 /**
@@ -34,6 +36,7 @@ FBLUser::FBLUser(string userID, string passwd, string firstName, string lastName
 
     this->next = NULL;
     this->prev = NULL;
+    this->plistMyFeed = new list<string>;
 };
 
 /**
@@ -56,7 +59,8 @@ int FBLUser::post(string text){
     //TODO: check text for invalid input
     this->postLL->create(text);
     for(FBLUser* ptrFriend : this->vecFriends){
-        ptrFriend->myFeed->push_back(text);
+        ptrFriend->plistMyFeed->push_back(text);
+        //ptrFriend->myFeed.push_back(text);
     }
     return 0;
 }
@@ -68,7 +72,7 @@ int FBLUser::post(string text){
  * TODO: for better design, maybe I should keep input and output in main
  * and reset this to return string
  */
-int FBLUser::read(){
+int FBLUser::readandRemovePost(){
     if(this->postLL->empty())
         return -1;
     else{
@@ -87,16 +91,15 @@ int FBLUser::mainLoop(){
         vector<string> vectCmd;
         cout<<endl;
         cout<<"welcome, "<<this->getUserID()<<endl;
-        cout<<"1.read 2.post 3.view "<<endl;
-        cout<<"4.friend 5.myfeed 6.mywall"<<endl;
-        cout<<"7.logout"<<endl;
+        cout<<"$post $readPost $view"<<endl;
+        cout<<"$friend $myfeed $readFeed $mywall"<<endl;
+        cout<<"$logout"<<endl;
         cout<<"please input command:";
         getline(cin, strCmd);
 #if DEBUG
         cout<<endl;
         cout<<"cmd from test: "<<strCmd<<endl;
         cout<<endl;
-
 #endif
         splitString(strCmd, vectCmd, " ");
         if(vectCmd.empty()){
@@ -128,16 +131,20 @@ int FBLUser::mainLoop(){
         else if(vectCmd[0]=="post" ||
                 vectCmd[0]=="Post" ||
                 vectCmd[0]=="POST"){
-            if(vectCmd.size() == 2){
-                this->post(vectCmd[1]);
+            if(vectCmd.size() >= 2){
+                string post = strCmd.substr(5);
+                post += " from ";
+                post += this->userID;
+                this->post(post);
+                //this->post(vectCmd[1]);
             }else{
                 this->post();
             }
         }
-        else if(vectCmd[0]=="read" ||
-                vectCmd[0]=="Read" ||
-                vectCmd[0]=="READ"){
-            if(this->read() == -1)
+        else if(vectCmd[0]=="readPost" ||
+                vectCmd[0]=="ReadPost" ||
+                vectCmd[0]=="READPOST"){
+            if(this->readandRemovePost() == -1)
                 cout<<"nothing to read"<<endl;
         }
         else if(vectCmd[0]=="mywall" ||
@@ -148,20 +155,29 @@ int FBLUser::mainLoop(){
         else if(vectCmd[0]=="myfeed" ||
                 vectCmd[0]=="Myfeed" ||
                 vectCmd[0]=="MYFEED"){
-            //TODO: may use std::list this time
             this->readMyFeeds();
+        }
+        else if(vectCmd[0]=="read" ||
+                vectCmd[0]=="Read" ||
+                vectCmd[0]=="READ" ||
+                vectCmd[0]=="readFeed" ||
+                vectCmd[0]=="ReadFeed" ||
+                vectCmd[0]=="READREED"){
+            this->readandRemoveFeed();
         }
         else if(vectCmd[0]=="help" ||
                 vectCmd[0]=="h" ||
                 vectCmd[0]=="HELP" ||
                 vectCmd[0]=="Help"){
-            cout<<"## read post"<<endl;
-            cout<<"## POST <text>"<<endl;
-            cout<<"## view info of user"<<endl;
-            cout<<"## friend <userid>"<<endl;
+            cout<<"## post: POST <text>"<<endl;
+            cout<<"## readPost: read and remove a post"<<endl;
+            cout<<"## view: view info of user"<<endl;
+            cout<<"## friend: friend <userid>"<<endl;
             cout<<"## myfriend: print out friends' name"<<endl;
             cout<<"## myfeed: print out feed post"<<endl;
+            cout<<"## readFeed: read and remove a Feed, or brief call read"<<endl;
             cout<<"## mywall: print out my posts"<<endl;
+            cout<<"## logout: log out"<<endl;
         }
         else if(vectCmd[0]=="quit" ||
                 vectCmd[0]=="Quit" ||
@@ -206,12 +222,13 @@ int FBLUser::myWall(){
 };
 
 int FBLUser::readMyFeeds(){
-    if(this->myFeed->empty()){
+    //if(this->myFeed->empty()){
+    if(this->plistMyFeed->empty()){
         cout<<"empty feed"<<endl;
         return 0;
     }
-    //TODO: give seg fault
-    for(string tmp : *(this->myFeed)){
+    for(string tmp : *(this->plistMyFeed)){
+    //for(string tmp : this->myFeed){
         cout<<tmp<<endl;
     }
     cout<<endl;
@@ -260,6 +277,12 @@ int FBLUser::myfriends(){
     cout<<endl;
     return 0;
 };
+
+int FBLUser::readandRemoveFeed(){
+    cout<<this->plistMyFeed->front()<<endl;
+    this->plistMyFeed->pop_front();
+    return 0;
+}
 
 string FBLUser::getLastName(){
     return this->lastName;
