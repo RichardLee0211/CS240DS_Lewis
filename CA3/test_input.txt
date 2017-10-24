@@ -5,21 +5,17 @@ create userid4 passwd4 first4 last4
 create userid5 passwd5 first5 last5
 view
 login userid1 passwd1
+friend userid2
+friend userid3
+friend userid4
+myfriend
+myfeed
 post text1
 post text2
 post text3
 post text4
 post text5
-read
-read
-read
-read
-read
-read
-read
-read
-friend userid2
-friend userid3
-friend userid4
-myfriend
+mywall
 logout
+login userid2 passwd2
+myfeed

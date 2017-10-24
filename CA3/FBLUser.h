@@ -4,6 +4,7 @@
 #include<iostream>
 #include<stdlib.h>
 #include<vector>
+#include<list>
 
 #include"FBLPostLL.h"
 
@@ -16,7 +17,10 @@ class FBLUser{
         string userID;
         string passwd;
         FBLPostLL *postLL;
+        //TODO: ??when I try to make it a pointer, give me a segment fault
         vector<FBLUser*> vecFriends;
+        //TODO: ??report corrupted double-linked list when try list<string> myFeed
+        list<string> *myFeed;
 
     public:
         // still think it's ugly,
@@ -35,11 +39,13 @@ class FBLUser{
         string getLastName();
         string getFirstName();
         int quit();
-        int readPosts();
         int addFriend(string userID);
         int addFriend();
         int isCorrectPasswd(string passwd);
         int myfriends();
+        int readMyFeeds();
+        int readPosts();
+        int myWall();
 
     public:
         int post();

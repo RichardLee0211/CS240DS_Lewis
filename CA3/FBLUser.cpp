@@ -55,6 +55,9 @@ int FBLUser::post(){
 int FBLUser::post(string text){
     //TODO: check text for invalid input
     this->postLL->create(text);
+    for(FBLUser* ptrFriend : this->vecFriends){
+        ptrFriend->myFeed->push_back(text);
+    }
     return 0;
 }
 
@@ -86,7 +89,7 @@ int FBLUser::mainLoop(){
         cout<<"welcome, "<<this->getUserID()<<endl;
         cout<<"1.read 2.post 3.view "<<endl;
         cout<<"4.friend 5.myfeed 6.mywall"<<endl;
-        cout<<"when finished, you can type \"logout \""<<endl;
+        cout<<"7.logout"<<endl;
         cout<<"please input command:";
         getline(cin, strCmd);
 #if DEBUG
@@ -146,7 +149,7 @@ int FBLUser::mainLoop(){
                 vectCmd[0]=="Myfeed" ||
                 vectCmd[0]=="MYFEED"){
             //TODO: may use std::list this time
-            //this->postLL->view();
+            this->readMyFeeds();
         }
         else if(vectCmd[0]=="help" ||
                 vectCmd[0]=="h" ||
@@ -188,10 +191,6 @@ int FBLUser::printUser(){
     return 0;
 };
 
-string FBLUser::getUserID(){
-    return this->userID;
-}
-
 int FBLUser::quit(){
     return 0;
 }
@@ -201,16 +200,39 @@ int FBLUser::readPosts(){
     return 0;
 }
 
+int FBLUser::myWall(){
+    this->postLL->view();
+    return 0;
+};
+
+int FBLUser::readMyFeeds(){
+    if(this->myFeed->empty()){
+        cout<<"empty feed"<<endl;
+        return 0;
+    }
+    //TODO: give seg fault
+    for(string tmp : *(this->myFeed)){
+        cout<<tmp<<endl;
+    }
+    cout<<endl;
+    return 0;
+};
+
 int FBLUser::isCorrectPasswd(string passwd){
     if(this->passwd == passwd)
         return 1;
     return 0;
 };
 
+/**
+ * when User A friends UserB, then UserB automatically friends UserA
+ */
 int FBLUser::addFriend(string userID){
+    //TODO: check userID
     FBLUser* tmp = userLL->getPointer(userID);
     if(tmp != NULL){
         this->vecFriends.push_back(tmp);
+        tmp->vecFriends.push_back(this);
         return 0;
     }
     else{
@@ -219,18 +241,19 @@ int FBLUser::addFriend(string userID){
     }
 }
 
-//TODO:
 int FBLUser::addFriend(){
-    //FBLUser* tmp = getPointer(userID);
-    //this->vecFriends.push_back();
-    userLL->printLL();
-    throw "not implement";
+    string tmp;
+    cout<<"please input friend's userID: ";
+    cin>>tmp;
+    this->addFriend(tmp);
     return 0;
 }
 
 int FBLUser::myfriends(){
-    //TODO: quickfix report, range-base 'for' loops are not allowd in C++98 mode
-    //how to mute this
+    if(this->vecFriends.empty()){
+        cout<<"there is no friends on list"<<endl;
+        return 0;
+    }
     for(FBLUser* ptrFriend : this->vecFriends){
         cout<<ptrFriend->getFirstName()<<" "<<ptrFriend->getFirstName()<<endl;
     }
@@ -244,4 +267,8 @@ string FBLUser::getLastName(){
 
 string FBLUser::getFirstName(){
     return this->firstName;
+}
+
+string FBLUser::getUserID(){
+    return this->userID;
 }
