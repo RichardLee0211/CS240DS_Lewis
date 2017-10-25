@@ -20,7 +20,7 @@ FBLPost::FBLPost(string content){
     //TODO: ?? use tring copy function ??
     this->content = content;
 
-    this->commentLL = new FBLCommentLL();
+    //this->commentLL = new FBLCommentLL();
     this->next = NULL;
     this->pre = NULL;
 };

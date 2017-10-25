@@ -6,6 +6,9 @@
 #include"FBLUser.h"
 #include"util.h"
 
+/**
+ * constructor
+ */
 FBLUserLL::FBLUserLL(){
     this->head = NULL;
     this->end = NULL;
@@ -15,8 +18,11 @@ FBLUserLL::FBLUserLL(){
 
 /**
  * deconstructor
- * TODO:
  */
+FBLUserLL::~FBLUserLL(){
+    //cause free work has been down by quit()
+    return;
+}
 
 /**
  * operate<<
@@ -132,6 +138,13 @@ int FBLUserLL::login(string userID, string passwd){
  * QUIT
  */
 int FBLUserLL::quit(){
+    cout<<endl<<"clearing allocated memory ..."<<endl;
+    FBLUser* tmp = this->head;
+    while(tmp != NULL){
+        this->curr = tmp->next;
+        delete tmp;
+        tmp = this->curr;
+    }
     return 1;
 };
 
@@ -141,9 +154,9 @@ int FBLUserLL::mainLoop(){
         vector<string> vectCmd;
         cout<<endl;
         cout<<"this is Top interface"<<endl;
-        cout<<"1.create 2.login 3.view 4.quit"<<endl;
-        cout<<"1. CREATE <Userid> <Password> <First> <Last>"<<endl;
-        cout<<"2. LOGIN <userID>"<<endl;
+        cout<<"$create $login $view"<<endl;
+        cout<<"$help"<<endl;
+        cout<<"$quit"<<endl;
         cout<<"please input command:";
         getline(cin, strCmd);
 #if DEBUG
@@ -161,7 +174,8 @@ int FBLUserLL::mainLoop(){
 #endif
         }
         else if(vectCmd[0]=="create" ||
-                vectCmd[0]=="Create" || vectCmd[0]=="CREATE"){
+                vectCmd[0]=="Create" ||
+                vectCmd[0]=="CREATE"){
             if(vectCmd.size() == 5){
                 this->create(vectCmd[1], vectCmd[2], vectCmd[3], vectCmd[4]);
             }else{
@@ -169,7 +183,8 @@ int FBLUserLL::mainLoop(){
             }
         }
         else if(vectCmd[0]=="login" ||
-                vectCmd[0]=="Login" || vectCmd[0]=="LOGIN"){
+                vectCmd[0]=="Login" ||
+                vectCmd[0]=="LOGIN"){
             int result = -1;
             if(vectCmd.size() == 3){
                 result = this->login(vectCmd[1], vectCmd[2]);
@@ -184,14 +199,24 @@ int FBLUserLL::mainLoop(){
             if(result == -1 ){
                 cout<<"login fall"<<endl;
             }
-
         }
         else if(vectCmd[0]=="view" ||
-                vectCmd[0]=="View" || vectCmd[0]=="VIEW"){
+                vectCmd[0]=="View" ||
+                vectCmd[0]=="VIEW"){
             this->printLL();
         }
+        else if(vectCmd[0]=="help" ||
+                vectCmd[0]=="Help" ||
+                vectCmd[0]=="HELP" ||
+                vectCmd[0]=="h"){
+            cout<<"$create: CREATE <Userid> <Password> <First> <Last>"<<endl;
+            cout<<"$login: LOGIN <userID> <passwd>"<<endl;
+            cout<<"$view: print out info of userLL"<<endl;
+            cout<<"$quit: just quit, and recycle of allocated memory "<<endl;
+        }
         else if(vectCmd[0]=="quit" ||
-                vectCmd[0]=="Quit" || vectCmd[0]=="QUIT"){
+                vectCmd[0]=="Quit" ||
+                vectCmd[0]=="QUIT"){
             this->quit();
             cout<< "good bye"<<endl;
             break;

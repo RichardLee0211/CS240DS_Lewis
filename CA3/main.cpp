@@ -17,5 +17,6 @@ FBLUserLL *userLL = new FBLUserLL();
 
 int main(){
     userLL->mainLoop();
+    delete userLL;
     return 0;
 }

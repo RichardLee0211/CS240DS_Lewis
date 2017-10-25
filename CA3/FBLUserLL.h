@@ -15,6 +15,7 @@ class FBLUserLL{
 
     public:
         FBLUserLL();
+        ~FBLUserLL();
         int printLL();
 
     public:

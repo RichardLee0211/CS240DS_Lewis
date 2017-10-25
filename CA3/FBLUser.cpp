@@ -21,6 +21,7 @@ FBLUser::FBLUser(){
     this->next = NULL;
     this->prev = NULL;
     this->plistMyFeed = new list<string>;
+    return;
 };
 
 /**
@@ -37,8 +38,15 @@ FBLUser::FBLUser(string userID, string passwd, string firstName, string lastName
     this->next = NULL;
     this->prev = NULL;
     this->plistMyFeed = new list<string>;
+    return;
 };
 
+FBLUser::~FBLUser(){
+    delete this->plistMyFeed;
+    this->postLL->clearMem();
+    delete this->postLL;
+    return;
+};
 /**
  * POST
  */

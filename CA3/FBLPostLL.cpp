@@ -10,6 +10,29 @@ FBLPostLL::FBLPostLL(){
     this->number = 0;
 };
 
+// ?? never called when delete this->postLL in user class??
+FBLPostLL::~FBLPostLL(){
+    /*
+    FBLPost* tmp = this->head;
+    while(tmp != NULL){
+        this->curr = tmp->next;
+        delete tmp;
+        tmp = this->curr;
+    }
+    return;
+    */
+};
+
+int FBLPostLL::clearMem(){
+    FBLPost* tmp = this->head;
+    while(tmp != NULL){
+        this->curr = tmp->next;
+        delete tmp;
+        tmp = this->curr;
+    }
+    return 0;
+};
+
 /*
 int FBLPostLL::create(){
     //TODO: it have similar code of FBLPostLL::create(string)

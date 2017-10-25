@@ -33,6 +33,7 @@ class FBLUser{
 
     public:
         FBLUser();
+        ~FBLUser();
         FBLUser(string userID, string passwd, string firstName, string lastname);
         int printUser();
         string getUserID();

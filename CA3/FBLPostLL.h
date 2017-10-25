@@ -16,6 +16,8 @@ class FBLPostLL{
 
     public:
         FBLPostLL();
+        ~FBLPostLL();
+        int clearMem();
         int printLL();
         int removeHead();
         int empty();

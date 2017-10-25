@@ -33,3 +33,5 @@ login userid1 passwd1
 myfeed
 read
 myfeed
+logout
+quit
