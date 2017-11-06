@@ -10,6 +10,7 @@
 
 using namespace std;
 
+// TODO: this code is not beautiful enough, full of compromise
 // A lazy implement, let all functions and classes could access useLL
 // and in util.h, I add
 // extern FBLUserLL* userLL;

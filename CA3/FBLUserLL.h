@@ -31,7 +31,8 @@ class FBLUserLL{
         int quit();
         int mainLoop();
 
-        friend FBLUser* getPointer(string userID);
+        // friend FBLUser* getPointer(string userID);
         FBLUser* getPointer(string userID);
+        int sortUsers();
 };
 #endif

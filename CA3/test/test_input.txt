@@ -1,24 +1,35 @@
-create userid1 passwd1 first1 last1
 create userid2 passwd2 first2 last2
 create userid3 passwd3 first3 last3
+create userid9 passwd9 first9 last9
 create userid4 passwd4 first4 last4
+create userid1 passwd1 first1 last1
 create userid5 passwd5 first5 last5
-view
+create userid7 passwd7 first7 last7
+create userid8 passwd8 first8 last8
+create userid6 passwd6 first6 last6
+users
+sortusers
+users
 login userid1 passwd1
 friend userid2
 friend userid3
 friend userid4
 friend userid5
 myfriend
-post text1 from user1
-post text2 from user1
-post text3 from user1
-post text4 from user1
-post text5 from user1
+post text1 text1 text1
+post text2 text2 text2
+post text3 text3 text3
+post text4 text4 text4
+post text5 text5 text5
 mywall
 logout
 login userid2 passwd2
 myfeed
+read
+comment commenttest1
+comment commenttest2
+comment commenttest3
+
 friend userid3
 friend userid4
 friend userid5

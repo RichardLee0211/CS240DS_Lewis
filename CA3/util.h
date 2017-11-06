@@ -12,5 +12,7 @@ bool existsFile (const std::string& name);
 
 #include"FBLUserLL.h"
 
+// this userLL is initialed in main.cpp
 extern FBLUserLL *userLL;
+
 #endif

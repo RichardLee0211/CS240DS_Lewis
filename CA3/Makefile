@@ -4,6 +4,7 @@ OBJDIR := bin
 OBJS :=  $(addprefix $(OBJDIR)/, main.o \
 		FBLUser.o FBLUserLL.o \
 		FBLPost.o FBLPostLL.o \
+		FBLComment.o \
 		util.o)
 CC := g++
 DEBUG := -g
@@ -39,15 +40,19 @@ $(OBJDIR)/FBLPost.o: FBLPost.cpp FBLPost.h util.h
 $(OBJDIR)/FBLPostLL.o: FBLPostLL.cpp FBLPostLL.h util.h
 	$(CC) $(CFLAGS) $< -o $@
 
+$(OBJDIR)/FBLComment.o: FBLComment.cpp FBLComment.h util.h
+	$(CC) $(CFLAGS) $< -o $@
+
 $(OBJDIR)/util.o: util.cpp util.h
 	$(CC) $(CFLAGS) $< -o $@
 
+.PHONY: run and test
 # run and test
 run:
 	./$(TARGET)
 
 test:
-	cat test_input.txt | ./$(TARGET)
+	cat test/test_input.txt | ./$(TARGET)
 
 # Specify the object files and executables that are generated
 # and need to be removed to re-compile the whole thing

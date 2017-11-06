@@ -20,7 +20,7 @@ FBLUser::FBLUser(){
 
     this->next = NULL;
     this->prev = NULL;
-    this->plistMyFeed = new list<string>;
+    this->plistMyFeed = new list<FBLPost*>;
     return;
 };
 
@@ -37,7 +37,7 @@ FBLUser::FBLUser(string userID, string passwd, string firstName, string lastName
 
     this->next = NULL;
     this->prev = NULL;
-    this->plistMyFeed = new list<string>;
+    this->plistMyFeed = new list<FBLPost*>;
     return;
 };
 
@@ -47,6 +47,7 @@ FBLUser::~FBLUser(){
     delete this->postLL;
     return;
 };
+
 /**
  * POST
  */
@@ -67,7 +68,7 @@ int FBLUser::post(string text){
     //TODO: check text for invalid input
     this->postLL->create(text);
     for(FBLUser* ptrFriend : this->vecFriends){
-        ptrFriend->plistMyFeed->push_back(text);
+        ptrFriend->plistMyFeed->push_back(this->postLL->getHead());
         //ptrFriend->myFeed.push_back(text);
     }
     return 0;
@@ -210,8 +211,9 @@ int FBLUser::mainLoop(){
 };
 
 int FBLUser::printUser(){
-    cout<<this->lastName<<"\t";
-    cout<<this->firstName<<endl;
+    cout<<this->lastName<<", ";
+    cout<<this->firstName<<" ";
+    cout<<"<"<<this->userID<<">\n";
     return 0;
 };
 
@@ -235,13 +237,26 @@ int FBLUser::readMyFeeds(){
         cout<<"empty feed"<<endl;
         return 0;
     }
-    for(string tmp : *(this->plistMyFeed)){
     //for(string tmp : this->myFeed){
-        cout<<tmp<<endl;
+    for(FBLPost* tmp : *(this->plistMyFeed)){
+        cout<<*tmp<<endl;
     }
     cout<<endl;
     return 0;
 };
+
+int FBLUser::readandRemoveFeed(){
+    if(this->plistMyFeed->empty()){
+        cout<<"empty feed"<<endl;
+        return 0;
+    }
+    FBLPost* pPost = this->plistMyFeed->front();
+    cout<<*pPost<<endl;
+    pPost->mainloop(this->getFirstName(), this->getLastName());
+    this->plistMyFeed->pop_front();
+    return 0;
+}
+
 
 int FBLUser::isCorrectPasswd(string passwd){
     if(this->passwd == passwd)
@@ -286,20 +301,72 @@ int FBLUser::myfriends(){
     return 0;
 };
 
-int FBLUser::readandRemoveFeed(){
-    cout<<this->plistMyFeed->front()<<endl;
-    this->plistMyFeed->pop_front();
-    return 0;
-}
-
-string FBLUser::getLastName(){
+string FBLUser::getLastName() const{
     return this->lastName;
 }
 
-string FBLUser::getFirstName(){
+string FBLUser::getFirstName() const{
     return this->firstName;
 }
 
-string FBLUser::getUserID(){
+string FBLUser::getUserID() const{
     return this->userID;
 }
+
+/* global functions related to FBLUser */
+bool operator< (const FBLUser& lhs, const FBLUser& rhs){
+    return lhs.getLastName() < rhs.getLastName();
+};
+bool operator> (const FBLUser& lhs, const FBLUser& rhs){
+    return rhs<lhs;
+};
+bool operator<=(const FBLUser& lhs, const FBLUser& rhs){
+    return !(lhs>rhs);
+};
+bool operator>=(const FBLUser& lhs, const FBLUser& rhs){
+    return !(lhs<rhs);
+};
+
+int swap(FBLUser* a, FBLUser* b){
+    if(a == NULL || b == NULL)
+        return -1;
+    /* if a is next to b */
+    if(b->next == a){
+        FBLUser* tmp = a;
+        a = b;
+        b = tmp;
+    }
+    /* if b is next to a */
+    if(a->next == b){
+        FBLUser* aprev = a->prev;
+        FBLUser* bnext = b->next;
+        a->prev = b;
+        a->next = bnext;
+        b->prev = aprev;
+        b->next = a;
+        if(aprev != NULL)
+            aprev->next = b;
+        if(bnext != NULL)
+            bnext->prev = a;
+    }
+    /* if a and b is not neighbor */
+    else{
+        FBLUser* aprev = a->prev;
+        FBLUser* anext = a->next;
+        FBLUser* bnext = b->next;
+        FBLUser* bprev = b->prev;
+        a->prev = bprev;
+        a->next = bnext;
+        b->prev = aprev;
+        b->next = anext;
+        if(aprev != NULL)
+            aprev->next = b;
+        if(anext != NULL)
+            anext->prev = b;
+        if(bprev != NULL)
+            bprev->next = a;
+        if(bnext != NULL)
+            bnext->prev = a;
+    }
+    return 0;
+};

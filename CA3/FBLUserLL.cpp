@@ -56,9 +56,8 @@ int FBLUserLL::create(){
  */
 int FBLUserLL::create(string userID, string passwd, string firstName, string lastName){
     //TODO: check inputs
-    /**
-     * check if userID is duplicate
-     */
+
+    /* check if userID is duplicate */
     FBLUser * tmp = this->head;
     while(tmp != NULL){
         if(tmp->getUserID() == userID){
@@ -68,17 +67,30 @@ int FBLUserLL::create(string userID, string passwd, string firstName, string las
         tmp = tmp->next;
     }
 
+    /* if 0 */
     if(this->number==0){
         this->head = new FBLUser(userID, passwd, firstName, lastName);
         this->end = this->head;
         this->curr = this->head;
         this->head->prev = NULL;
         this->end->next = NULL;
-    }else{
+    }
+    /* if 1 or more */
+#if 0
+    // insert and the end of the list
+    else{
         this->end->next = new FBLUser(userID, passwd, firstName, lastName);
         this->end->next->prev = this->end;
         this->end=this->end->next;
         this->end->next = NULL;
+    }
+#endif
+    // insert to the head of the list
+    else{
+        this->head->prev= new FBLUser(userID, passwd, firstName, lastName);
+        this->head->prev->next = this->head;
+        this->head = this->head->prev;
+        this->head->prev = NULL;
     }
     this->number++;
     return 0;
@@ -154,7 +166,7 @@ int FBLUserLL::mainLoop(){
         vector<string> vectCmd;
         cout<<endl;
         cout<<"this is Top interface"<<endl;
-        cout<<"$create $login $view"<<endl;
+        cout<<"$create $login $users"<<endl;
         cout<<"$help"<<endl;
         cout<<"$quit"<<endl;
         cout<<"please input command:";
@@ -205,6 +217,16 @@ int FBLUserLL::mainLoop(){
                 vectCmd[0]=="VIEW"){
             this->printLL();
         }
+        else if(vectCmd[0]=="users" ||
+                vectCmd[0]=="Users" ||
+                vectCmd[0]=="USERS"){
+            this->printLL();
+        }
+        else if(vectCmd[0]=="sortusers" ||
+                vectCmd[0]=="SortUsers" ||
+                vectCmd[0]=="SORTUSERS"){
+            this->sortUsers();
+        }
         else if(vectCmd[0]=="help" ||
                 vectCmd[0]=="Help" ||
                 vectCmd[0]=="HELP" ||
@@ -240,7 +262,6 @@ int FBLUserLL::printLL(){
 };
 
 FBLUser* FBLUserLL::getPointer(string userID){
-    //TODO:
     FBLUser* tmp = this->head;
     while(tmp != NULL){
         if(tmp->getUserID() == userID)
@@ -248,4 +269,40 @@ FBLUser* FBLUserLL::getPointer(string userID){
         tmp = tmp->next;
     }
     return NULL;
+};
+
+int FBLUserLL::sortUsers(){
+    /* use simplest bubble sort */
+    // not a good idea, cause tmp is float inside list,
+    // for(FBLUser* tmp=this->head; tmp!=NULL && tmp->next!=NULL; tmp=tmp->next){
+    for(uint i=0; i<this->number; i++){
+        for(FBLUser* tmp2=this->head; tmp2!=NULL && tmp2->next!=NULL; tmp2=tmp2->next){
+            if(*tmp2 > *tmp2->next){
+                swap(tmp2, tmp2->next);
+                tmp2 = tmp2->prev;
+            }
+        }
+        /* reset this->head to head  */
+        FBLUser* tmp=this->head;
+        for(; tmp!=NULL && tmp->prev!=NULL; tmp=tmp->prev)
+            ;
+        this->head = tmp;
+#if 0
+        /* a other way to reset this->head */
+        while(1){
+            if(tmp!=NULL && tmp->prev != NULL){
+                tmp = tmp->prev;
+                continue;
+            }
+            else if(tmp!=NULL && tmp->prev==NULL)
+                break;
+        }
+#endif
+    }
+    /* reset this->end to end */
+    FBLUser* tmp=this->end;
+    for(; tmp!=NULL && tmp->next!=NULL; tmp=tmp->next)
+        ;
+    this->end= tmp;
+    return 0;
 };

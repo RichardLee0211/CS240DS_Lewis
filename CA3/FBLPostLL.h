@@ -27,6 +27,14 @@ class FBLPostLL{
         int create(string text="defaultText");
         int read();
         int view();
+        FBLPost* getHead();
+
+        /* friend functions */
+        friend ostream &operator<<(ostream &os, const FBLPostLL& postLL);
 
 };
+
+/* some compilers require seperate declare of friend function */
+ostream &operator<<(ostream &os, const FBLPostLL& postLL);
+
 #endif

@@ -53,16 +53,27 @@ int FBLPostLL::create(){
 */
 
 int FBLPostLL::create(string text){
+    // TODO: check argument
     if(this->number == 0){
         this->head = new FBLPost(text);
         this->head->next = NULL;
-        this->head->pre = NULL;
+        this->head->prev = NULL;
         this->end = this->head;
         this->curr = this->head;
-    }else{
+    }
+#if 0
+    // insert to the end
+    else{
         this->end->next = new FBLPost(text);
         this->end->next->pre = this->end;
         this->end = this->end->next;
+    }
+#endif
+    // insert to the head
+    else{
+        this->head->prev = new FBLPost(text);
+        this->head->prev->next = this->head;
+        this->head = this->head->prev;
     }
         this->number++;
     return 0;
@@ -92,7 +103,7 @@ int FBLPostLL::removeHead(){
     delete this->head;
     this->head = tmp;;
     if(this->head != NULL)
-        this->head->pre = NULL;
+        this->head->prev = NULL;
     this->number--;
     return 0;
 
@@ -119,4 +130,19 @@ int FBLPostLL::view(){
     }
     cout<<"end of Posts"<<endl;
     return 0;
-}
+};
+
+FBLPost* FBLPostLL::getHead(){
+    return this->head;
+};
+
+/* friend function of class FBLPostLL */
+ostream &operator<<(ostream &os, const FBLPostLL& postLL){
+    FBLPost *tmp = postLL.head;
+    while(tmp != NULL){
+        os<<*tmp<<endl;
+        tmp = tmp->next;
+    }
+    os<<"end of Posts"<<endl;
+    return os;
+};
