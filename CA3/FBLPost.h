@@ -12,6 +12,7 @@ using namespace std;
 
 class FBLPost{
     private:
+        /* private members */
         int likes;
         string content;
         // list<FBLComment*> commentLL;
@@ -20,8 +21,12 @@ class FBLPost{
     public:
         FBLPost* next;
         FBLPost* prev;
+
+    public:
+        /* basical functions */
         //FBLPost();
         FBLPost(string text="defaultContent");
+        ~FBLPost();
 
     public:
         int view();

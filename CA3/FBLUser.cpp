@@ -132,9 +132,9 @@ int FBLUser::mainLoop(){
                 this->addFriend();
             }
         }
-        else if(vectCmd[0]=="myfriend" ||
-                vectCmd[0]=="MyFriend" ||
-                vectCmd[0]=="MYFRIEND"){
+        else if(vectCmd[0]=="myfriends" ||
+                vectCmd[0]=="MyFriends" ||
+                vectCmd[0]=="MYFRIENDS"){
                 this->myfriends();
         }
         else if(vectCmd[0]=="post" ||

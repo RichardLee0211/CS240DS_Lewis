@@ -19,12 +19,24 @@ FBLPost::FBLPost(){
 
 FBLPost::FBLPost(string content){
     this->likes = 0;
-    //TODO: ?? use tring copy function ??
     this->content = content;
 
-    //this->commentLL // this member doesn't need initial;
+    // this->commentLL // this member doesn't need initial;
+    this->plistCommentLL = new list<FBLComment*>;
+
     this->next = NULL;
     this->prev = NULL;
+    return;
+};
+
+FBLPost::~FBLPost(){
+    /* release memory of comment */
+    for(auto iter: *this->plistCommentLL){
+        delete iter;
+    }
+    /* release commentLL itself */
+    delete this->plistCommentLL;
+    return;
 };
 
 int FBLPost::view(){
@@ -54,7 +66,6 @@ int FBLPost::comment(string content, string strCommenterFirstName, string strCom
 };
 
 int FBLPost::read_az(){
-    // TODO: make sure it works
     for(FBLComment* pComment : *(plistCommentLL)){
         cout<<*(pComment)<<endl;
     }
@@ -62,7 +73,16 @@ int FBLPost::read_az(){
 };
 
 int FBLPost::read_za(){
-    // TODO:
+    // TODO: since end() return a pointer pointing to NULL
+    // and iter is a pointer to pointer, *iter is the pointer to object
+    // so **iter is object, figure out what's a iterator
+    auto iter=this->plistCommentLL->end();
+    for(iter--;
+            iter!=this->plistCommentLL->begin();
+            iter--){
+        cout<<**iter<<endl;
+    }
+    cout<<**iter<<endl;
     return 0;
 };
 
@@ -105,8 +125,9 @@ int FBLPost::mainloop(string strFirstName, string strLastName){
         else if(vectCmd[0]=="comment" ||
                 vectCmd[0]=="Comment" ||
                 vectCmd[0]=="COMMENT"){
-            if(vectCmd.size() == 2){
-                this->comment(vectCmd[1], strFirstName, strLastName);
+            if(vectCmd.size() >= 2){
+                string comment = strCmd.substr(8);
+                this->comment(comment, strFirstName, strLastName);
             }else{
                 this->comment(strFirstName, strLastName);
             }
@@ -116,9 +137,9 @@ int FBLPost::mainloop(string strFirstName, string strLastName){
                 vectCmd[0]=="READ_AZ"){
             this->read_az();
         }
-        else if(vectCmd[0]=="read_az" ||
-                vectCmd[0]=="Read_az" ||
-                vectCmd[0]=="READ_AZ"){
+        else if(vectCmd[0]=="read_za" ||
+                vectCmd[0]=="Read_za" ||
+                vectCmd[0]=="READ_ZA"){
             this->read_za();
         }
         else if(vectCmd[0]=="help" ||
@@ -135,7 +156,7 @@ int FBLPost::mainloop(string strFirstName, string strLastName){
                 vectCmd[0]=="Done" ||
                 vectCmd[0]=="DONE"){
             this->done();
-            cout<< "good bye"<<endl;
+            cout<< "welcome back to like and comment"<<endl;
             break;
         }
         else{

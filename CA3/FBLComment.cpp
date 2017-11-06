@@ -13,6 +13,11 @@ using namespace std;
 
 FBLComment::FBLComment(string content){
     this->strContent = content;
+    return;
+};
+
+FBLComment::~FBLComment(){
+    return;
 };
 
 int FBLComment::setCommenterLastName(string lastname){
@@ -25,7 +30,7 @@ int FBLComment::setCommenterFirstName(string firstname){
 };
 
 ostream &operator<<(ostream &os, const FBLComment& comment){
-    os<<comment.strContent<<" from: "<<comment.strCommenterFirstName
+    os<<comment.strContent<<" from: "<<comment.strCommenterFirstName<<" "
         <<comment.strCommenterLastName;
     return os;
 };

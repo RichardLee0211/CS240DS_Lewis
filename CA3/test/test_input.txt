@@ -15,7 +15,7 @@ friend userid2
 friend userid3
 friend userid4
 friend userid5
-myfriend
+myfriends
 post text1 text1 text1
 post text2 text2 text2
 post text3 text3 text3
@@ -26,9 +26,20 @@ logout
 login userid2 passwd2
 myfeed
 read
-comment commenttest1
-comment commenttest2
-comment commenttest3
+like
+like
+like
+comment commenttest1 test1 test1
+comment commenttest2 test2 test2
+comment commenttest3 test3 test3
+read_az
+read_za
+done
+logout
+login userid1 passwd1
+mywall
+logout
+quit
 
 friend userid3
 friend userid4

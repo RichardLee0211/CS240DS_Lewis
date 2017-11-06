@@ -27,6 +27,7 @@ class FBLComment{
     public:
         /* basical class functions */
         FBLComment(string content);
+        ~FBLComment();
 
     public:
         /* other functions */
