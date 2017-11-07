@@ -7,23 +7,15 @@
 
 using namespace std;
 
+class FBLUser;
+
 class FBLComment{
     private:
         /* private data members */
         string strContent;
         string strCommenterLastName;
         string strCommenterFirstName;
-        // TODO: ??
-        // FBLUser* pFBLUserCommenter;
-        // FBLUser doesn't name a type
-        // In file included
-        // from FBLPost.h:9:0,
-        // from FBLPostLL.h:8,
-        // from FBLUser.h:9,
-        // from FBLUserLL.h:7,
-        // from main.cpp:6:
-        // FBLComment.h:16:9: error: ‘FBLUser’ does not name a type
-        // FBLUser *pFBLUserCommenter;
+        // FBLUser* pCommenter;
     public:
         /* basical class functions */
         FBLComment(string content);

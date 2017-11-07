@@ -32,6 +32,7 @@ class FBLUser{
         // usually, we store user in Database, using unique userID
         // but not linked list
         // TODO: what if these fields only public to FBLUserLL ??
+        // use friend
         FBLUser* next;
         FBLUser* prev;
 

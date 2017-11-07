@@ -73,9 +73,6 @@ int FBLPost::read_az(){
 };
 
 int FBLPost::read_za(){
-    // TODO: since end() return a pointer pointing to NULL
-    // and iter is a pointer to pointer, *iter is the pointer to object
-    // so **iter is object, figure out what's a iterator
     auto iter=this->plistCommentLL->end();
     for(iter--;
             iter!=this->plistCommentLL->begin();

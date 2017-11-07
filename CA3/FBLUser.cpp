@@ -6,9 +6,6 @@
 #include"FBLUser.h"
 #include"util.h"
 
-// TODO: to find a better design,
-// maybe I shouldn't put mainloop as member functions of FBLUser and FBLUserLL
-// but this do need info from FBLUserLL
 #include"FBLUserLL.h"
 
 FBLUser::FBLUser(){

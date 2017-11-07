@@ -30,8 +30,9 @@ class FBLPost{
 
     public:
         int view();
-        // TODO: the same problem here, can't use #include"FLBUser.h"
         // int mainloop(FBLUser* pUser);
+        // to use FBLUser*
+        // class FBLUser; on the header
         int mainloop(string strFirstName, string strLastName);
         int like();
         int comment(string content, string strCommenterFirstName, string strCommenterLastName);

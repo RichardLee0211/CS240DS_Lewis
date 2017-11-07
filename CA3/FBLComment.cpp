@@ -7,7 +7,7 @@
 // void splitString(const std::string& s, std::vector<std::string>& v, const std::string& c);
 // util.h:6:51: error: expected ¡®,¡¯ or ¡®...¡¯ before ¡®<¡¯ token
 // void splitString(const std::string& s, std::vector<std::string>& v, const std::string& c);
-// #include"util.h"
+#include"util.h"
 
 using namespace std;
 
