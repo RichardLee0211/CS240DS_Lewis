@@ -1,0 +1,46 @@
+# 8
+## a
+int i, j, k;
+for (i=0; i < N; i++)
+    for (j=0; j < N; j++)
+        for (k=0; k < N; k++)
+            cout << i << j << k << endl;
+myAnswer:
+frequency count: N^3
+Big Oh: O(N^3)
+explain: three layers of loop, each on is N
+
+## b
+int i, j, k;
+for (i=0; i < N; i++)  // N
+    for (j=0; j < N; j *=2)  // log2(N)
+        for (k=0; k < N; k++)  // N
+            cout << i << j << k << endl;
+myAnswer:
+frequency count: N^2 * log2(N)
+Big Oh: O(N^2*logN)
+explain: see comments
+
+## c
+int i, j, k;
+for (i=0; i < N; i *= 2) // log2(N)
+    for (j=0; j < 100; j++) // 100
+        for (k=0; k < N; k++) {  // N
+            cout << i << j << k << endl;
+            k = k * 2;
+        }
+myAnswer:
+frequency count: log2(N) * 100 * N
+Big Oh: O(N*logN)
+explain: see comments
+
+int i, j, k;
+for (i=0; i < 100; i *= 2) // log2(100)
+    for (j=0; j < N; j *= 2) // log2(N)
+        for (k=0; k < N; k *= 2) { // log2(N)
+            cout << i << j << k << endl;
+        }
+myAnswer:
+frequency count: log2(100) * log2(N) * log2(N)
+Big Oh: O(log2(N) * log2(N))
+explain: see comments

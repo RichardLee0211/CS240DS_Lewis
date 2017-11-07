@@ -1,0 +1,1 @@
+A function call is said to be tail recursive if there is nothing to do after the function returns except return its value.
