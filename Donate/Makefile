@@ -6,6 +6,9 @@ DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
 
+vpath %.cpp src
+vpath %.h include
+
 # Specifiy the target
 all: $(TARGET)
 
@@ -16,16 +19,16 @@ $(TARGET): $(OBJS)
 
 # Specify how the object files should be created from source files
 main.o: main.cpp util.h
-	$(CC) $(CFLAGS) main.cpp
+	$(CC) $(CFLAGS) $<
 
 Donor.o: Donor.cpp Donor.h util.h
-	$(CC) $(CFLAGS) Donor.cpp
+	$(CC) $(CFLAGS) $<
 
 DonorDatabase.o: DonorDatabase.cpp DonorDatabase.h util.h
-	$(CC) $(CFLAGS) DonorDatabase.cpp
+	$(CC) $(CFLAGS) $<
 
 util.o: util.cpp util.h
-	$(CC) $(CFLAGS) util.cpp
+	$(CC) $(CFLAGS) $<
 
 # Specify the object files and executables that are generated
 # and need to be removed to re-compile the whole thing
