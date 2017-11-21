@@ -1,0 +1,6 @@
+CXX=clang++
+
+all: Dish
+
+Dish: Dish.cpp Dish.h
+	$(CXX) -c $< -o $@
