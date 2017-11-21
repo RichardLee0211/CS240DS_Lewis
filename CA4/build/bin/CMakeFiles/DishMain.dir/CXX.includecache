@@ -11,6 +11,8 @@ iostream
 -
 string
 -
+cctype
+-
 Dish.h
 /Users/richardlee/Code/cs240/cs240mytest/CA4/src/Dish.h
 
@@ -18,6 +20,8 @@ Dish.h
 iostream
 -
 string
+-
+vector
 -
 
 /Users/richardlee/Code/cs240/cs240mytest/CA4/src/main.cpp
