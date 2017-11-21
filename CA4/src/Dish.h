@@ -1,10 +1,15 @@
 #include<iostream>
 #include<string>
 
+/**
+ * defination of Doubly Indexed String Heap(Dish)
+ */
 class Dish{
     private:
-        std::string heapLength[1024];
-        std::string heapAlph[1024];
+        int number;
+        std::string list[1024];
+        std::string* heapLength[1024];
+        std::string* heapAlph[1024];
 
     public:
         int insert(std::string s);
@@ -15,4 +20,6 @@ class Dish{
         std::string getshortest();
         std::string getfirst();
 
+    public:
+        // operator<<();
 };

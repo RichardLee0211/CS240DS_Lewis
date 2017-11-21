@@ -1,0 +1,5 @@
+/Users/richardlee/Code/cs240/cs240mytest/CA4/build/CMakeFiles/rebuild_cache.dir
+/Users/richardlee/Code/cs240/cs240mytest/CA4/build/CMakeFiles/edit_cache.dir
+/Users/richardlee/Code/cs240/cs240mytest/CA4/build/bin/CMakeFiles/rebuild_cache.dir
+/Users/richardlee/Code/cs240/cs240mytest/CA4/build/bin/CMakeFiles/edit_cache.dir
+/Users/richardlee/Code/cs240/cs240mytest/CA4/build/bin/CMakeFiles/DishMain.dir

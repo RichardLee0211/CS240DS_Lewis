@@ -1,0 +1,37 @@
+TARGET := DishMain
+OBJS := Dish.o main.o
+CXX := g++
+DEBUG := -g
+CFLAGS := -Wall -std=c++11 -c $(DEBUG)
+LFLAGS := -Wall -std=c++11 $(DEBUG)
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CXX) $(LFLAGS) $^ -o $@
+
+Dish.o: Dish.cpp Dish.h
+	$(CXX) $(CFLAGS) $< -o $@
+
+main.o: main.cpp
+	$(CXX) $(CFLAGS) $< -o $@
+
+.PHONY: run and test
+# run and test
+run:
+	./$(TARGET)
+
+test:
+	./$(TARGET)
+
+
+.PHONY: clean
+clean:
+	rm -f $(OBJS) $(TARGET)
+	# rm -rf $(OBJDIR)
+	# rm -f *.tar.gz
+
+tar:
+	tar -czvf projectname.tar.gz *.cpp *.h\
+		Makefile README.md *.md *.txt
+	mkdir -q backup.d
+	mv project.tar.gz backup.d
