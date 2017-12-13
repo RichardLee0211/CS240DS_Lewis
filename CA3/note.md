@@ -27,3 +27,14 @@ need more lookinto
 
 //TODO: give seg fault
 when have a pointer in class, constructor needs to implement this
+
+_____ [ 10 pts ] LIKE
+_____ [ 10 pts ] COMMENT
+_____ [ 10 pts ] READ
+_____ [ 10 pts ] READ_AZ
+_____ [ 10 pts ] READ_ZA
+__0___ [ 10 pts ] DLL - used vector of comments
+_____ [ 10 pts ] USERS
+_____ [ 10 pts ] SORTUSERS
+__12___ [ 15 pts ] MISC - Naming convention
+_____ [ 5 pts ] Attendance
