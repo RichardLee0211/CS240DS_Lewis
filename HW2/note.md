@@ -93,9 +93,10 @@ answer:
 # 17
 answer: a, b
 
-# 18 TODO: remain
+# 18
 answer:
-O(lg(N))
+O(lg(N)) // X, O(N)
+list all worst and best runtime complixity
 because:
 // i go throuh 1 to A[N/2]
 i = 1

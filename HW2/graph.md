@@ -34,3 +34,5 @@ prim's algorithm
         find an edge e in E of samllest weight, that join
             vertex u in N to a vertex v that is not in N
         add e to E'
+
+BFS, DFS
