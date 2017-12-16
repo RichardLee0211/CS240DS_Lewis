@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,17 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/Users/richardlee/Code/cs240/cs240mytest/CA4/src/Dish.cpp
+/home/wli100/Code/cs240/cs240mytest/CA4/src/Dish.cpp
 iostream
 -
 string
 -
 cctype
 -
+algorithm
+-
 Dish.h
-/Users/richardlee/Code/cs240/cs240mytest/CA4/src/Dish.h
+/home/wli100/Code/cs240/cs240mytest/CA4/src/Dish.h
 
-/Users/richardlee/Code/cs240/cs240mytest/CA4/src/Dish.h
+/home/wli100/Code/cs240/cs240mytest/CA4/src/Dish.h
 iostream
 -
 string
@@ -24,9 +26,9 @@ string
 vector
 -
 
-/Users/richardlee/Code/cs240/cs240mytest/CA4/src/main.cpp
+/home/wli100/Code/cs240/cs240mytest/CA4/src/main.cpp
 iostream
 -
 Dish.h
-/Users/richardlee/Code/cs240/cs240mytest/CA4/src/Dish.h
+/home/wli100/Code/cs240/cs240mytest/CA4/src/Dish.h
 

@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/richardlee/Code/cs240/cs240mytest/CA4/src/Dish.cpp" "/Users/richardlee/Code/cs240/cs240mytest/CA4/build/bin/CMakeFiles/DishMain.dir/Dish.cpp.o"
-  "/Users/richardlee/Code/cs240/cs240mytest/CA4/src/main.cpp" "/Users/richardlee/Code/cs240/cs240mytest/CA4/build/bin/CMakeFiles/DishMain.dir/main.cpp.o"
+  "/home/wli100/Code/cs240/cs240mytest/CA4/src/Dish.cpp" "/home/wli100/Code/cs240/cs240mytest/CA4/build/bin/CMakeFiles/DishMain.dir/Dish.cpp.o"
+  "/home/wli100/Code/cs240/cs240mytest/CA4/src/main.cpp" "/home/wli100/Code/cs240/cs240mytest/CA4/build/bin/CMakeFiles/DishMain.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

@@ -1,8 +1,18 @@
 #include<iostream>
 #include<string>
 #include<cctype>
+#include<algorithm>
 
 #include"Dish.h"
+
+#define IS_STD 1
+
+#if !IS_STD
+void make_heap(RandomIt begin, RandomIt end, Compare compare){
+    return;
+}
+#endif
+
 
 class Comparator{
     public:
@@ -25,10 +35,20 @@ int Dish::insert(std::string s){
     this->list[this->number] = s;
 
     this->heapLength.push_back(&this->list[this->number]);
-    std::push_heap(this->heapLength.begin(), this->heapLength.end(), Comparator::sortbylength);
+#if IS_STD
+    // std::push_heap(this->heapLength.begin(), this->heapLength.end(), Comparator::sortbylength);
+    std::make_heap(this->heapLength.begin(), this->heapLength.end(), Comparator::sortbylength);
+#else
+    make_heap(this->heapLength.begin(), this->heapLength.end(), Comparator::sortbylength);
+#endif
 
     this->heapAlph.push_back(&this->list[this->number]);
-    std::push_heap(this->heapAlph.begin(), this->heapAlph.end(), Comparator::sortbyalph);
+#if IS_STD
+    // std::push_heap(this->heapAlph.begin(), this->heapAlph.end(), Comparator::sortbyalph);
+    std::make_heap(this->heapAlph.begin(), this->heapAlph.end(), Comparator::sortbyalph);
+#else
+    make_heap(this->heapAlph.begin(), this->heapAlph.end(), Comparator::sortbyalph);
+#endif
 
     return this->number++;
 };
@@ -47,8 +67,17 @@ bool Dish::capitalize(int k){
 
     this->list[k][0] = std::toupper(this->list[k][0]);
 
-    std::make_heap(this->heapLength.begin(), this->heapLength.end(), Comparator::sortbylength); // TODO: ??
-    std::make_heap(this->heapAlph.begin(), this->heapAlph.end(), Comparator::sortbyalph);
+#if IS_STD
+    std::make_heap(this->heapLength.begin(), this->heapLength.end(),
+            Comparator::sortbylength); // TODO: ??
+    std::make_heap(this->heapAlph.begin(), this->heapAlph.end(),
+            Comparator::sortbyalph);
+#else
+    make_heap(this->heapLength.begin(), this->heapLength.end(),
+            Comparator::sortbylength); // TODO: ??
+    make_heap(this->heapAlph.begin(), this->heapAlph.end(),
+            Comparator::sortbyalph);
+#endif
 
     return true;
 };
@@ -61,8 +90,17 @@ bool Dish::allcaps(int k){
         i=std::toupper(i);
     }
 
-    std::make_heap(this->heapLength.begin(), this->heapLength.end(), Comparator::sortbylength);
-    std::make_heap(this->heapAlph.begin(), this->heapAlph.end(), Comparator::sortbyalph);
+#if IS_STD
+    std::make_heap(this->heapLength.begin(), this->heapLength.end(),
+            Comparator::sortbylength);
+    std::make_heap(this->heapAlph.begin(), this->heapAlph.end(),
+            Comparator::sortbyalph);
+#else
+    make_heap(this->heapLength.begin(), this->heapLength.end(),
+            Comparator::sortbylength);
+    make_heap(this->heapAlph.begin(), this->heapAlph.end(),
+            Comparator::sortbyalph);
+#endif
 
     return true;
 };
@@ -70,12 +108,21 @@ bool Dish::allcaps(int k){
 bool Dish::truncate(int k, int i){
     k--; // hate kth string, but index is k-1, what a stupid API
     if(k >= this->number) return false;
-    if(i >= sizeof(this->list[k])) return true;
+    if(i >= (int)sizeof(this->list[k])) return true;
 
     this->list[k] = this->list[k].substr(0, i);
 
-    std::make_heap(this->heapLength.begin(), this->heapLength.end(), Comparator::sortbylength); // TODO: ??
-    std::make_heap(this->heapAlph.begin(), this->heapAlph.end(), Comparator::sortbyalph);
+#if IS_STD
+    std::make_heap(this->heapLength.begin(), this->heapLength.end(),
+            Comparator::sortbylength); // TODO: ??
+    std::make_heap(this->heapAlph.begin(), this->heapAlph.end(),
+            Comparator::sortbyalph);
+#else
+    make_heap(this->heapLength.begin(), this->heapLength.end(),
+            Comparator::sortbylength); // TODO: ??
+    make_heap(this->heapAlph.begin(), this->heapAlph.end(),
+            Comparator::sortbyalph);
+#endif
 
     return true;
 };
