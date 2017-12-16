@@ -57,7 +57,6 @@ if(d[v] > d[u] + w(u, v))
     p[v] = u
 
 # 12
-TODO: remain
 answer: c
 
 # 13

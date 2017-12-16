@@ -1,0 +1,24 @@
+
+# HEAPS
+- Know about the two heap properties: Max-heap vs. min-heap
+- Know all the heap operations and how they work
+- Know how heaps are stored in arrays and how to calculate the parent index from the child's index, and vice versa
+- Heap-Sort!
+
+# HASH TABLES
+- Understand hash functions, what they're for and what makes a good one
+- Collisions -- what they are, and strategies for dealing with them
+       linear probing, "quadratic" probing, etc... chaining
+- Various operations on hash tables... what they're good at and under what conditions.
+
+# GRAPHS
+- Understand the different graph representations and tradeoffs
+    adjacency list, adjacency matrix
+- Know the terms directed graph, weighted graph, DAG (directed acyclic graph)
+- Djikstra's algorithm; what it does and how it works (we spent a lot of time on this!!)
+- Understand and be able to write graph traversal pseudo-code (Depth first vs. breadth first search)
+- Minimum Spanning Trees - Kruskal (mostly) and Prim (high level understanding)... differences, similarities, etc.
+
+AVL Trees
+
+Not the details... but definitely know what they're for, roughly how they work, what the basis for balancing is, what a balancing factor is and how it is used, etc.
