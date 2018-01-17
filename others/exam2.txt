@@ -1,0 +1,122 @@
+Exam 2
+Potential Exam 2 Topics include:
+
+
+TEMPLATES
+
+  Understand the purpose and syntax of C++ templates
+
+  Know that templates can be used for classes or functions
+
+  Know what the compiler does when it processes a template
+
+  Understand that a template might not necessarily work with 
+
+     every possible type, and why (the type might require 
+
+     certain methods to be implemented)
+
+  Be able to read and understand templated code
+
+  Be able to pick out "correct" syntax of templated code from
+
+     incorrect syntax
+
+
+RECURSION
+
+  Know the role of the "base case" and why it is important
+
+??  Understand that recursive calls put activation records on the
+
+     runtime stack, and the implication of that
+
+  Be able to "trace" recursive functions, to determine what they do
+
+     and whether they work properly
+
+??  Be able to write simple recursive functions, especially functions
+
+     that we have seen directly in class (tree traversal, 
+
+fib(n) = fib(n-1) + fib(n-2) if n >= 3
+
+, summing
+
+     an array, 
+
+factorial(N) means N! In math
+
+, etc.) 
+
+
+TREES
+
+  Know what it means for trees to be 
+balanced, 
+complete, 
+full. 
+
+  Understand BST's, how they work, how they're different from regular
+
+     binary trees, and the runtime complexity of BST operations
+
+  Be able to write code for pre-order, in-order, and post-order 
+
+     traversal of a binary tree
+
+  Understand how BST insert works
+
+  Understand how delete on a binary tree works, what the three "cases"
+
+     are, and how they work
+
+  Recognize and be able to trace working code for delete (but I won't
+
+     ask you to write it)
+
+  Know that not all trees are binary trees
+
+
+SORTING
+
+  Understand all of the sorting algorithms that we do in class, what their runtime
+
+  complexities are, and why.  
+
+Quicksort, Mergesort, Bubble Sort, 
+
+ Selection Sort, 
+
+  Insertion Sort. 
+
+I might even ask about the “recursive version" of the N^2 sorts.
+
+
+RUNTIME COMPLEXITY
+
+  Know why you can, and how to, remove constants and coefficients
+
+     from instruction counts to determine runtime complexity
+
+  Understand the basic "ordering" of runtime complexities
+
+     O(1), O(log2N), O(N), O(Nlog2N), O(N^2), etc.
+
+  Be able to look at code and determine its runtime
+
+     complexity (Big O) 
+
+  Be able to determine runtime complexity of an algorithm, given 
+
+     a description of the algorithm
+
+  You will NOT be asked to give EXACT counts of instructions, 
+
+     but should be able to give rough estimates
+
+  Know the runtime complexity of various algorithms we have 
+
+     studied and worked on (for trees, lists, even sorting, etc.)
+
+  Be able to determine the runtime complexity of recursive functions
