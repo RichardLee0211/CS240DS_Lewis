@@ -1,6 +1,11 @@
 # cs240mytest
-this is a repository for my cs240 class code assignment and project.
-do not copy and paste, TAs could catch a copied code easily
+This is a repository for my cs240 class code assignment and project.
+Do **not** copy and paste, TAs could catch a copied code easily
+
+If you find this repository helpful, please watch, star, fork or leave a
+comment. I would like to make it better.
+
+Leave me a comment, wli100@binghamton.edu
 =======================================================================
 TOPICS FOR EXAM 1 INCLUDE (but may not be limited to!) THE FOLLOWING:
 =======================================================================
